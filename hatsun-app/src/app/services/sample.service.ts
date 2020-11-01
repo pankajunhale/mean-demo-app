@@ -26,7 +26,7 @@ export class SampleService extends BaseService {
     }
 
     findAllUsers() {
-        return this.service.get('api/v1/user');
+        return this.service.get('api/employee');
     }
 
 
