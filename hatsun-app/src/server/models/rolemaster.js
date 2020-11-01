@@ -2,17 +2,61 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const schema = new Schema({
-    ID:
+    RoleID:
     {
         type: String
     },
-    Name:
+    RoleName:
     {
         type: String
     },
-    Coustomer:
+    Description:
     {
         type: String
+    },
+    DealerID:
+    {
+        type: String
+    },
+    AccessIDs:
+    {
+        type:String
+    },
+    RegionIDs:
+    {
+        type:String
+    },
+    SubRegion1IDs:
+    {
+        type:String
+    },
+    SubRegion2IDs:
+    {
+        type:String
+    },
+    WhenEntered:
+    {
+        type: String
+    },
+    WhenModified:
+    {
+        type:String
+    },
+    IsActive:
+    {
+        type:Boolean
+    },
+    BEID:
+    {
+        type:String
+    },
+    IsGobal:
+    {
+        type:Boolean
+    },
+    CustomerID:
+    {
+        type:String
     }
 })
 
