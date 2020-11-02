@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const Coustomerschema = new Schema({
+const schema = new Schema({
     CustomerID:
     {
         type: String
@@ -56,5 +56,5 @@ const Coustomerschema = new Schema({
     }
 })
 
-const CoustomerMaster = mongoose.model('CoustomerMaster', Coustomerschema)
-module.exports = CoustomerMaster
+const CustomerMaster = mongoose.model('CustomerMaster', schema)
+module.exports = CustomerMaster

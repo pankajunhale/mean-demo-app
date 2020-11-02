@@ -2,7 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-const controller = require('../controllers/coustomermasterController');
+const controller = require('../controllers/customermasterController');
 
 router.get('/', controller.index)
 router.post('/show', controller.show)

@@ -1,8 +1,8 @@
-const CoustomerMaster = require('../models/Coustomermaster')
+const CustomerMaster = require('../models/Customermaster')
 
 // list of employee
 const index = (req, res, next) => {
-    CoustomerMaster.find()
+    CustomerMaster.find()
         .then(response => {
             res.json({
                 response
@@ -17,8 +17,8 @@ const index = (req, res, next) => {
 
 // show single employee
 const show = (req, res, next) => {
-    let coustomerID = req.body.coustomerID
-    CoustomerMaster.findById(coustomerID)
+    let customerID = req.body.customerID
+    CustomerMaster.findById(customerID)
         .then(response => {
             res.json({
                 response
@@ -33,7 +33,7 @@ const show = (req, res, next) => {
 
 // storing to database
 const store = (req, res, next) => {
-    let coustomermaster = new CoustomerMaster({
+    let customermaster = new CustomerMaster({
         CustomerID : req.body.CustomerID,
         CustomerName: req.body.CustomerName,
         Address: req.body.Address,
@@ -49,10 +49,10 @@ const store = (req, res, next) => {
         IsActive: req.body.IsActive
 
     })
-    coustomermaster.save()
+    customermaster.save()
         .then(response => {
             res.json({
-                message: 'Coustomer added successfully!'
+                message: 'Customer added successfully!'
             })
         })
         .catch(error => {
@@ -65,7 +65,7 @@ const store = (req, res, next) => {
 // update an empoyee
 
 const update = (req, res, next) => {
-    let coustomermasterID = req.body.coustomermasterID
+    let customermasterID = req.body.customermasterID
 
     let updatedData = {
         CustomerID: req.body.CustomerID,
@@ -83,10 +83,10 @@ const update = (req, res, next) => {
         IsActive: req.body.IsActive
     }
 
-    CoustomerMaster.findByIdAndUpdate(coustomermasterID, { $set: updatedData })
+    CustomerMaster.findByIdAndUpdate(customermasterID, { $set: updatedData })
         .then(() => {
             res.json({
-                message: 'Coustomer Updated!'
+                message: 'Customer Updated!'
             })
         })
         .catch(error => {
@@ -97,11 +97,11 @@ const update = (req, res, next) => {
 //delete an employee
 
 const destroy = (req, res, next) => {
-    let coustomermasterID = req.body.coustomermasterID
-    CoustomerMaster.findByIdAndRemove(coustomermasterID)
+    let customermasterID = req.body.customermasterID
+    CustomerMaster.findByIdAndRemove(customermasterID)
         .then(() => {
             res.json({
-                message: 'Coustomer deleted!'
+                message: 'Customer deleted!'
             })
         })
         .catch(error => {
