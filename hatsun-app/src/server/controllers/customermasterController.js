@@ -17,8 +17,8 @@ const index = (req, res, next) => {
 
 // show single employee
 const show = (req, res, next) => {
-    let customerID = req.body.customerID
-    CustomerMaster.findById(customerID)
+    let customermasterID = req.body.customermasterID
+    CustomerMaster.findById(customermasterID)
         .then(response => {
             res.json({
                 response
