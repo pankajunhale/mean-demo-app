@@ -1,0 +1,49 @@
+.user-container { border-bottom: 1px solid #000; }
+
+.user-details {
+    width: 97%;
+    margin: 13px auto 0 auto;
+    text-align: center;
+}
+
+.user-details p {
+    margin-bottom: 22px;
+    padding: 5px 5px;
+    background: #eaeaea;
+}
+
+a { 
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid #000;
+    background: #3a3737;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .level-1 li {  position: relative; }
+  .level-2 li { position: relative; }
+  
+  .level-2 { 
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+  }
+  
+  .level-3 {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+  }
+  
