@@ -1,4 +1,22 @@
-<app-login-page></app-login-page>
+<div *ngIf="!loginStatus">
+    <app-login-page></app-login-page>
+</div>
 <!-- <app-sample-view></app-sample-view> -->
-
-
+<div class="master-page" *ngIf="loginStatus">
+    <header>
+        <app-header></app-header>
+    </header>
+    <main>
+        <nav class="sidebar-navigation">
+            <app-sidebar-menu></app-sidebar-menu>
+        </nav>
+        <section class="content">
+            <div class="bradcrumbs">
+                <p>Home / Sales / Sales List</p>
+            </div>
+            <h2>Content Section</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid in nobis, eveniet, corrupti ex mollitia consequatur
+                ipsum est quidem illum, deserunt labore fugit quas natus ad repellendus quisquam animi sint.</p>
+        </section>
+    </main>
+</div>
