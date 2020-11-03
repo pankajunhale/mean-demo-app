@@ -1,0 +1,9 @@
+.logo {
+    font-size: 23px;
+}
+.header-container {
+    padding: 10px 15px;
+    background: #212529;
+}
+.header-btns ul { margin: 0 !important; }
+.header-btns li { margin: 0 0 0 5px; }
