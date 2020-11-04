@@ -6,40 +6,14 @@
         </div>
     </div>
     <ul class="level-1">
-        <li>
-            <a href="#">User Master</a>
-            <ul class="level-2">
-                <li>
-                    <a href="#">Level 2</a>
-                    <ul class="level-3">
-                        <li>
-                            <a href="">Level 3</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Customer Master</a>
-            <ul class="level-2">
-                <li>
-                    <a href="#">Level 2</a>
-                    <ul class="level-3">
-                        <li>
-                            <a href="">Level 3</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Vendor Master</a>
-            <ul class="level-2">
-                <li>
-                    <a href="#">Level 2</a>
-                    <ul class="level-3">
-                        <li>
-                            <a href="">Level 3</a>
+        <li *ngFor = "let level1 of MenuList">
+            <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupMenu}}</a>
+            <ul class="level-2" *ngIf = "MenuSelectionId == level1.GroupId">
+                <li *ngFor = "let level2 of level1.ParentMenu">
+                    <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.ParentMenu}}</a>
+                    <ul class="level-3" *ngIf = "AnotherMenuSelectionId == level2.ParentId">
+                        <li *ngFor = "let level3 of level2.ChieldMenu">
+                            <a class="menu-link" href="">{{level3.ChieldMenu}}</a>
                         </li>
                     </ul>
                 </li>

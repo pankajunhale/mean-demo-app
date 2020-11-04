@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -7,11 +8,15 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  constructor() { 
+  constructor(private router : Router) { 
     
   }
   
   ngOnInit() {
+  }
+
+  login() {
+    this.router.navigate(['/home'])
   }
 
 }

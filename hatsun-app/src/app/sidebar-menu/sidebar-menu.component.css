@@ -30,9 +30,9 @@ a {
   
   .level-1 li {  position: relative; }
   .level-2 li { position: relative; }
+  .menu-link { cursor: pointer; }
   
   .level-2 { 
-    display: none;
     width: 100%;
     position: absolute;
     top: 0;
@@ -40,7 +40,6 @@ a {
   }
   
   .level-3 {
-    display: none;
     width: 100%;
     position: absolute;
     top: 0;
