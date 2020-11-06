@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { HeaderComponent } from './header/header.component';
+import { DataTablesModule } from 'angular-datatables';
+import { MasterPageComponent } from './master-page/master-page.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { HeaderComponent } from './header/header.component';
     SampleViewComponent,
     LoginPageComponent,
     SidebarMenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    MasterPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [SampleService],
   bootstrap: [AppComponent]
