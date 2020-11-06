@@ -6,7 +6,7 @@ const schema = new Schema({
     {
         type: String
     },
-    CoustomerName:
+    CustomerName:
     {
         type: String
     },

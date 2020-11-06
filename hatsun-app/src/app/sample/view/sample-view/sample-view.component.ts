@@ -9,6 +9,7 @@ import { SampleService } from 'src/app/services/sample.service';
 })
 export class SampleViewComponent implements OnInit {
   sampleDataViewModel: SampleModel = null;
+  userDataList: any;
   constructor(private sampleDataService: SampleService) {
    }
 
@@ -19,6 +20,9 @@ export class SampleViewComponent implements OnInit {
      this.sampleDataService.findAllUsers().subscribe((response)=>{
        debugger;
       console.log(response);
+      this.userDataList = response;
+       
+       console.log(this.userDataList);
     });
   }
 

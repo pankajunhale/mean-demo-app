@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MasterPageComponent } from './master-page/master-page.component';
 import { UserMasterListComponent } from './user-master-list/user-master-list.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { UserMasterListComponent } from './user-master-list/user-master-list.com
     HttpClientModule,
     DataTablesModule
   ],
-  providers: [SampleService],
+  providers: [SampleService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

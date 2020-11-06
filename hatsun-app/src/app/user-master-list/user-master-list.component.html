@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <div class="form-group filter-btn-section">
-                        <input type="submit" class="btn btn-primary" value="Search" />
+                        <input type="submit" class="btn btn-primary" (click)="onSubmit()" value="Search" />
                         <input type="reset" class="btn btn-primary" value="Clear" />
                     </div>
                 </div>
@@ -71,7 +71,7 @@
     <div class="section-container">
         <h3 class="section-title">List</h3>
         <div class="section-data-container">
-            <table datatable class="row-border hover">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -86,27 +86,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Nitin Sapate</td>
-                        <td>Account Owner</td>
-                        <td>Active</td>
-                        <td>nitin@gmail.com</td>
-                        <td>9856587563</td>
-                        <td>India</td>
-                        <td>Maharashtra</td>
-                        <td>Thane</td>
-                        <td>Thane</td>
-                    </tr>
-                    <tr>
-                        <td>Nitin Sapate</td>
-                        <td>Account Owner</td>
-                        <td>Active</td>
-                        <td>nitin@gmail.com</td>
-                        <td>9856587563</td>
-                        <td>India</td>
-                        <td>Maharashtra</td>
-                        <td>Thane</td>
-                        <td>Thane</td>
+                    <tr *ngFor="let userDetails of userDataList.response">
+                        <td>{{userDetails.UserName}}</td>
+                        <td>{{userDetails.RoleID}}</td>
+                        <td>{{userDetails.isActive}}</td>
+                        <td>{{userDetails.UserEmail}}</td>
+                        <td>{{userDetails.UserMobile}}</td>
+                        <td>{{userDetails.Country}}</td>
+                        <td>{{userDetails.State}}</td>
+                        <td>{{userDetails.District}}</td>
+                        <td>{{userDetails.Location}}</td>
                     </tr>
                 </tbody>
             </table>
