@@ -1,7 +1,7 @@
 const mongoose  = require('mongoose');
 const Schema =  mongoose.Schema
 
-const employeeSchema = new Schema({
+const schema = new Schema({
     UserID: 
     {
         type: String
@@ -77,5 +77,5 @@ const employeeSchema = new Schema({
     
 },)
 
-const Employee = mongoose.model('Employee', employeeSchema)
+const Employee = mongoose.model('Employee', schema)
 module.exports = Employee
