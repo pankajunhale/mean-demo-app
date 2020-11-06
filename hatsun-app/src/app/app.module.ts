@@ -10,6 +10,7 @@ import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MasterPageComponent } from './master-page/master-page.component';
+import { UserMasterListComponent } from './user-master-list/user-master-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MasterPageComponent } from './master-page/master-page.component';
     LoginPageComponent,
     SidebarMenuComponent,
     HeaderComponent,
-    MasterPageComponent
+    MasterPageComponent,
+    UserMasterListComponent
   ],
   imports: [
     BrowserModule,
