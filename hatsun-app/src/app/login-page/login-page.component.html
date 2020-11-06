@@ -1,0 +1,31 @@
+<div class="container-fluid login-page">
+    <div class="login-contaner">
+        <h1 class="login-title vertical-spacing">ACCOUNT LOGIN</h1>
+        <form>
+            <div class="form-group vertical-spacing">
+                <label for="email">Username:</label>
+                <input type="email" class="form-control" placeholder="Enter Username" id="username">
+            </div>
+            <div class="form-group vertical-spacing">
+                <label for="pwd">Password:</label>
+                <div class="col-sm-12 nopadding">
+                    <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+                    <a href="#"><i class="fa fa-eye eye-icon"></i></a> 
+                </div>
+            </div>
+            <div class="row vertical-spacing">
+                <div class="col-md-6 nopadding">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right nopadding">
+                    <a class="forgot-pass-label" href="#">Forgot Password?</a>
+                </div>
+            </div>
+            <button type="submit" ng-submit="login()" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>

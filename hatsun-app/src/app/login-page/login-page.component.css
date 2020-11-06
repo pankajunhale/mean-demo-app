@@ -1,0 +1,35 @@
+.login-page { 
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ebebeb;
+    /* z-index: -1; */
+}
+
+.login-contaner {
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 15px;
+    align-self: center;
+    padding: 50px 50px;
+    background-color: #fff;
+}
+
+.login-title {
+    color: #555555;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.vertical-spacing { margin: 0 0 20px 0;  }
+a { color: #555555; }
+.forgot-pass-label { font-size: 15px; }
+
+.eye-icon {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+}

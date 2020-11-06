@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SampleViewComponent } from './sample/view/sample-view/sample-view.component';
+import { UserMasterListComponent } from './user-master-list/user-master-list.component';
 
 const routes: Routes = [
   {
@@ -8,6 +9,9 @@ const routes: Routes = [
   },
   {
     path: 'sample', component: SampleViewComponent
+  },
+  {
+    path: 'userList', component: UserMasterListComponent
   }
 ];
 
