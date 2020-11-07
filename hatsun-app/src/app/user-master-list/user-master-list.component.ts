@@ -9,20 +9,7 @@ import { UserService } from '../services/user.service';
 export class UserMasterListComponent implements OnInit {
   userDataList: any;
   dtOptions: DataTables.Settings = {};
-  empDataList = [
-    {
-      firstName: "Shubham",
-      lastName: "Rajput"
-    },
-    {
-      firstName: "Ganesh",
-      lastName: "Patil"
-    },
-    {
-      firstName: "Shreyas",
-      lastName: "Unhale"
-    }
-  ]
+  empDataList: any;
   constructor(private userlist: UserService) {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -34,8 +21,24 @@ export class UserMasterListComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.userlist.findAllUsers().subscribe((response) => {
-      this.userDataList = response;
-    });
+    // this.userlist.findAllUsers().subscribe((response) => {
+    //   this.userDataList = response;
+    // });
+    this.userDataList = {
+      response: [
+        {
+          UserName: "Shubham",
+          RoleID: "Rajput"
+        },
+        {
+          UserName: "Ganesh",
+          RoleID: "Patil"
+        },
+        {
+          UserName: "Shreyas",
+          RoleID: "Unhale"
+        }
+      ]
+    }
   }
 }
