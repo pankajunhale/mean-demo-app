@@ -11,6 +11,8 @@ import { UserService } from '../services/user.service';
 export class CreateUserComponent implements OnInit {
   userName:string;
   userModel: UserModel;
+  // formname fields should be match with database col name
+  // 
   userForm = new FormGroup({
     userName: new FormControl(null, [Validators.required]),
     userEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z]*")]),
@@ -47,7 +49,9 @@ export class CreateUserComponent implements OnInit {
     this.userModel.PasswordResetedOn = "testkhjkh";
     this.userModel.TokenNo = "45465";
     debugger;
-    this.userService.submitUser(this.userModel)
+    this.userService.submitUser(this.userModel).subscribe((response: any) =>{
+      debugger;
+    })
   }
 
   get getUserFormRef() { return this.userForm.controls }
