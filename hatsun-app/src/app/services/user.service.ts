@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { HttpService } from './http.service';
 import { UserModel } from '../model/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService extends BaseService {
         return this.service.get('api/employee');
     }
 
-    submitUser(userData: UserModel) {
+    submitUser(userData: UserModel): Observable<any> {
         debugger;
         return this.service.post('api/employee/store', userData);
     }
