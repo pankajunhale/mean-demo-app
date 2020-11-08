@@ -33,6 +33,7 @@ const show = (req,res,next) => {
 
 // storing to database
 const store = (req,res,next) => {
+    debugger;
     let employee = new Employee({
     UserID: req.body.UserID,
     CustomerName: req.body.CustomerName,
