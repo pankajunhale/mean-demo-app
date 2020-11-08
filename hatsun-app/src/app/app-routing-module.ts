@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SampleViewComponent } from './sample/view/sample-view/sample-view.component';
 import { UserMasterListComponent } from './user-master-list/user-master-list.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'userList', component: UserMasterListComponent
+  },
+  {
+    path: 'createUser', component: CreateUserComponent
   }
 ];
 

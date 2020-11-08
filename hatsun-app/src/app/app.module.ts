@@ -12,6 +12,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { MasterPageComponent } from './master-page/master-page.component';
 import { UserMasterListComponent } from './user-master-list/user-master-list.component';
 import { UserService } from './services/user.service';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { UserService } from './services/user.service';
     SidebarMenuComponent,
     HeaderComponent,
     MasterPageComponent,
-    UserMasterListComponent
+    UserMasterListComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   providers: [SampleService,UserService],
   bootstrap: [AppComponent]

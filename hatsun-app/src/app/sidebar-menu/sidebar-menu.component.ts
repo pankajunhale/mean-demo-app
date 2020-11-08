@@ -80,8 +80,6 @@ export class SidebarMenuComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    console.log(event.target);
-    debugger;
     if(!$(event.target).hasClass("menu-link")) {
       this.MenuSelectionId = "0";
       this.AnotherMenuSelectionId = "0";
