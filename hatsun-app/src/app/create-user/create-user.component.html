@@ -2,7 +2,9 @@
   <div class="page-header">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="page-title">User Creation</h2>
+        <h2 class="page-title" *ngIf="urlRequest.pageStatus == 'create'">Create User</h2>
+        <h2 class="page-title" *ngIf="urlRequest.pageStatus == 'view'">User Details</h2>
+        <h2 class="page-title" *ngIf="urlRequest.pageStatus == 'edit'">Update User</h2>
       </div>
       <div class="col-md-6 text-right">
         <a [routerLink]="['/userList']" class="btn btn-dark">User List</a>
@@ -16,12 +18,13 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="userName">Name<i class="fa fa-asterisk customize-mandatory"></i></label>
-              <input formControlName="userName" type="text" id="userName"
-              [ngClass]="{'form-control': true, 
+              <label for="userName">Name
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="userName" type="text" id="userName" [ngClass]="{'form-control': true, 
               'is-invalid':!getUserFormRef.userName.valid && getUserFormRef.userName.touched,
               'is-valid': getUserFormRef.userName.valid}" />
-              <p *ngIf="!getUserFormRef.userName.valid && getUserFormRef.userName.touched" class="alert alert-danger">Name field is required</p>
+              <p *ngIf="!getUserFormRef.userName.valid && getUserFormRef.userName.touched" class="text-danger">Name field is required</p>
             </div>
           </div>
           <div class="col-md-6">
@@ -29,12 +32,11 @@
               <label for="email">Email
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <input formControlName="userEmail" type="text" id="email"
-              [ngClass]="{'form-control': true, 
+              <input formControlName="userEmail" type="text" id="email" [ngClass]="{'form-control': true, 
               'is-invalid':!getUserFormRef.userEmail.valid && getUserFormRef.userEmail.touched,
               'is-valid': getUserFormRef.userEmail.valid}" />
-              <p *ngIf="getUserFormRef.userEmail.errors?.required && getUserFormRef.userEmail.touched" class="alert alert-danger">Email field is required</p>
-              <p *ngIf="getUserFormRef.userEmail.errors?.pattern && getUserFormRef.userEmail.touched" class="alert alert-danger">Enter valid email address</p>
+              <p *ngIf="getUserFormRef.userEmail.errors?.required && getUserFormRef.userEmail.touched" class="text-danger">Email field is required</p>
+              <p *ngIf="getUserFormRef.userEmail.errors?.pattern && getUserFormRef.userEmail.touched" class="text-danger">Enter valid email address</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -42,36 +44,43 @@
               <label for="userCountry">Country
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <select formControlName="userCountry" class="form-control" id="userCountry"
-              [ngClass]="{'form-control': true, 
+              <select formControlName="userCountry" id="userCountry" [ngClass]="{'form-control': true, 
               'is-invalid':!getUserFormRef.userCountry.valid && getUserFormRef.userCountry.touched,
-              'is-valid': getUserFormRef.userCountry.valid}">
-                <option selected [ngValue]="null">Select</option>
+              'is-valid': getUserFormRef.userCountry.valid}" [(ngModel)]="userModel.Country">
+                <option selected [ngValue]=undefined>Select</option>
                 <option selected [ngValue]="1">India</option>
               </select>
-              <p *ngIf="getUserFormRef.userCountry.errors?.required && getUserFormRef.userCountry.touched" class="alert alert-danger">Email field is required</p>
+              <p *ngIf="getUserFormRef.userCountry.errors?.required && getUserFormRef.userCountry.touched" class="text-danger">Country field is required</p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
-              <label for="userName">State
+              <label for="userState">State
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <select class="form-control">
-                <option value="">Select</option>
+              <select formControlName="userState" id="userState" [ngClass]="{'form-control': true, 
+              'is-invalid':!getUserFormRef.userState.valid && getUserFormRef.userState.touched,
+              'is-valid': getUserFormRef.userState.valid}" [(ngModel)]="userModel.State">
+                <option selected [ngValue]=undefined>Select</option>
                 <option value="1">Maharashtra</option>
               </select>
+              <p *ngIf="getUserFormRef.userState.errors?.required && getUserFormRef.userState.touched" class="text-danger">State field is required</p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
-              <label for="userName">District
+              <label for="userDistrict">District
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <select class="form-control">
-                <option value="">Select</option>
+              <select formControlName="userDistrict" id="userDistrict" 
+              [ngClass]="{'form-control': true, 
+              'is-invalid':!getUserFormRef.userDistrict.valid && getUserFormRef.userDistrict.touched,
+              'is-valid': getUserFormRef.userDistrict.valid}" [(ngModel)]="userModel.District"
+              >
+                <option selected [ngValue]=undefined>Select</option>
                 <option value="1">Thane</option>
               </select>
+              <p *ngIf="getUserFormRef.userDistrict.errors?.required && getUserFormRef.userDistrict.touched" class="text-danger">District field is required</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -79,7 +88,11 @@
               <label for="userName">Location
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <input type="text" id="userName" class="form-control">
+              <input formControlName="userLocation" type="text" id="userName"
+              [ngClass]="{'form-control': true, 
+              'is-invalid':!getUserFormRef.userLocation.valid && getUserFormRef.userLocation.touched,
+              'is-valid': getUserFormRef.userLocation.valid}" [(ngModel)]="userModel.Location">
+              <p *ngIf="getUserFormRef.userLocation.errors?.required && getUserFormRef.userLocation.touched" class="text-danger">Location field is required</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -122,8 +135,9 @@
             </div>
           </div>
         </div>
-        <div class="form-submit-container text-right">
-          <input type="submit" class="btn btn-primary" (click)="submit()" value="Submit" />
+        <div *ngIf="urlRequest.pageStatus != 'view'" class="form-submit-container text-right">
+          <input type="submit" *ngIf="urlRequest.pageStatus == 'create'" [disabled]="!userForm.valid" class="btn btn-primary" (click)="submit()" value="Submit" />
+          <input type="submit" *ngIf="urlRequest.pageStatus == 'edit'" [disabled]="!userForm.valid" class="btn btn-primary" (click)="update()" value="Update" />
           <input type="reset" class="btn btn-primary" value="Clear" />
         </div>
       </form>

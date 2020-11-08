@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'userList', component: UserMasterListComponent
   },
   {
-    path: 'createUser', component: CreateUserComponent
+    path: 'createUser/:id/:pageStatus', component: CreateUserComponent
   }
 ];
 
