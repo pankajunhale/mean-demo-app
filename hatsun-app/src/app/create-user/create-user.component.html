@@ -23,7 +23,7 @@
               </label>
               <input formControlName="userName" type="text" id="userName" [ngClass]="{'form-control': true, 
               'is-invalid':!getUserFormRef.userName.valid && getUserFormRef.userName.touched,
-              'is-valid': getUserFormRef.userName.valid}" />
+              'is-valid': getUserFormRef.userName.valid}" [(ngModel)]="userModel.UserName" />
               <p *ngIf="!getUserFormRef.userName.valid && getUserFormRef.userName.touched" class="text-danger">Name field is required</p>
             </div>
           </div>
@@ -34,7 +34,7 @@
               </label>
               <input formControlName="userEmail" type="text" id="email" [ngClass]="{'form-control': true, 
               'is-invalid':!getUserFormRef.userEmail.valid && getUserFormRef.userEmail.touched,
-              'is-valid': getUserFormRef.userEmail.valid}" />
+              'is-valid': getUserFormRef.userEmail.valid}" [(ngModel)]="userModel.UserEmail"/>
               <p *ngIf="getUserFormRef.userEmail.errors?.required && getUserFormRef.userEmail.touched" class="text-danger">Email field is required</p>
               <p *ngIf="getUserFormRef.userEmail.errors?.pattern && getUserFormRef.userEmail.touched" class="text-danger">Enter valid email address</p>
             </div>
@@ -48,7 +48,7 @@
               'is-invalid':!getUserFormRef.userCountry.valid && getUserFormRef.userCountry.touched,
               'is-valid': getUserFormRef.userCountry.valid}" [(ngModel)]="userModel.Country">
                 <option selected [ngValue]=undefined>Select</option>
-                <option selected [ngValue]="1">India</option>
+                <option value="1">India</option>
               </select>
               <p *ngIf="getUserFormRef.userCountry.errors?.required && getUserFormRef.userCountry.touched" class="text-danger">Country field is required</p>
             </div>
@@ -100,7 +100,7 @@
               <label for="userName">Mobile No
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <input type="text" id="userName" class="form-control">
+              <input formControlName="userMobile" type="text" id="userName" class="form-control" [(ngModel)]="userModel.UserMobile" />
             </div>
           </div>
           <div class="col-md-3">
@@ -108,7 +108,7 @@
               <label for="userName">Set Password
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <input type="text" id="userName" class="form-control">
+              <input formControlName="userPassword" type="text" id="userName" class="form-control" [(ngModel)]="userModel.Password" />
             </div>
           </div>
           <div class="col-md-3">
@@ -116,8 +116,8 @@
               <label for="userName">Role
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <select class="form-control">
-                <option value="">Select</option>
+              <select formControlName="userRole" class="form-control" [(ngModel)]="userModel.RoleID">
+                <option selected [ngValue]=undefined>Select</option>
                 <option value="1">Account Owner</option>
               </select>
             </div>
@@ -127,10 +127,10 @@
               <label for="userName">Is Active
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
-              <select class="form-control">
-                <option value="">Select</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
+              <select formControlName="userIsActive" class="form-control" [(ngModel)]="userModel.isActive">
+                <option selected [ngValue]=undefined>Select</option>
+                <option value=true>Yes</option>
+                <option value=false>No</option>
               </select>
             </div>
           </div>

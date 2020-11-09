@@ -17,8 +17,15 @@ export class UserService extends BaseService {
         return this.service.get('api/employee');
     }
 
-    submitUser(userData: UserModel): Observable<any> {
-        debugger;
+    submitUser(userData: UserModel) {
         return this.service.post('api/employee/store', userData);
+    }
+
+    getIndividualRecord(userId: string) {
+        return this.service.post('api/employee/show', { employeeID : userId});
+    }
+
+    updateUser(userData: UserModel, employeeID: String) {
+        return this.service.post('api/employee/update', { userData: userData, employeeID: employeeID });
     }
 }
