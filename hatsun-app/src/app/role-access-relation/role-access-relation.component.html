@@ -1,0 +1,111 @@
+<div class="container-fluid ">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Role Access Relation</h2>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Selection Filter</h3>
+        <div class="section-data-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Role Name</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Menu Main Module</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Sub Module</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group filter-btn-section">
+                        <input type="submit" class="btn btn-primary" (click)="onSubmit()" value="Search" />
+                        <input type="reset" class="btn btn-primary" value="Clear" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">List</h3>
+        <div class="section-data-container">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Page Name</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Create User</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>User List</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Create Role -->
+<div class="modal fade" id="createRole">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Role</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+               <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="roleName">Role Name</label>
+                        <input type="text" class="form-control" id="roleName" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="" id="description" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="isActive">Is Active</label>
+                        <select name="" id="isActive" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+               </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+                <input type="reset" class="btn btn-primary" value="Clear" />
+            </div>
+        </div>
+    </div>
+</div>

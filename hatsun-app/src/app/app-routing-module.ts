@@ -4,6 +4,7 @@ import { SampleViewComponent } from './sample/view/sample-view/sample-view.compo
 import { UserMasterListComponent } from './user-master-list/user-master-list.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { RoleMasterComponent } from './role-master/role-master.component';
+import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'roleMaster', component: RoleMasterComponent
+  },
+  {
+    path: 'roleAccessRelation', component: RoleAccessRelationComponent
   }
 ];
 

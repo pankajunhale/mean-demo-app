@@ -15,6 +15,7 @@ import { UserService } from './services/user.service';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleMasterComponent } from './role-master/role-master.component';
+import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RoleMasterComponent } from './role-master/role-master.component';
     MasterPageComponent,
     UserMasterListComponent,
     CreateUserComponent,
-    RoleMasterComponent
+    RoleMasterComponent,
+    RoleAccessRelationComponent
   ],
   imports: [
     BrowserModule,
