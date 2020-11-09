@@ -17,6 +17,7 @@ const index  = (req,res,next) => {
 
 // show single employee
 const show = (req,res,next) => {
+    debugger;
     let employeeID = req.body.employeeID
     Employee.findById(employeeID)
     .then(response => {
@@ -70,28 +71,29 @@ const store = (req,res,next) => {
 // update an empoyee
 
 const update = (req,res,next) => {
+    debugger;
     let employeeID = req.body.employeeID
 
     let updatedData = {
         UserID: req.body.UserID,
-        CustomerName: req.body.CustomerName,
-        CustomerID: req.body.CustomerID,
-        UserName: req.body.UserName,
-        UserEmail: req.body.UserEmail,
-        UserEmail: req.body.UserEmail,
-        UserMobile: req.body.UserMobile,
-        Country: req.body.Country,
-        State: req.body.State,
-        District: req.body.District,
-        Location: req.body.Location,
-        AccessRoleName: req.body.AccessRoleName,
-        CMaccess: req.body.CMaccess,
-        Password: req.body.Password,
-        RoleID: req.body.RoleID,
-        isActive: req.body.isActive,
-        SecurityCode: req.body.SecurityCode,
-        PasswordResetedOn: req.body.PasswordResetedOn,
-        TokenNo: req.body.TokenNo
+        CustomerName: req.body.userData.CustomerName,
+        CustomerID: req.body.userData.CustomerID,
+        UserName: req.body.userData.UserName,
+        UserEmail: req.body.userData.UserEmail,
+        UserEmail: req.body.userData.UserEmail,
+        UserMobile: req.body.userData.UserMobile,
+        Country: req.body.userData.Country,
+        State: req.body.userData.State,
+        District: req.body.userData.District,
+        Location: req.body.userData.Location,
+        AccessRoleName: req.body.userData.AccessRoleName,
+        CMaccess: req.body.userData.CMaccess,
+        Password: req.body.userData.Password,
+        RoleID: req.body.userData.RoleID,
+        isActive: req.body.userData.isActive,
+        SecurityCode: req.body.userData.SecurityCode,
+        PasswordResetedOn: req.body.userData.PasswordResetedOn,
+        TokenNo: req.body.userData.TokenNo
     }
 
     Employee.findByIdAndUpdate(employeeID, {$set: updatedData})

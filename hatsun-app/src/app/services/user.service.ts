@@ -17,7 +17,14 @@ export class UserService extends BaseService {
     }
 
     submitUser(userData: UserModel) {
-        debugger;
         return this.service.post('api/employee/store', userData);
+    }
+
+    getIndividualRecord(userId: string) {
+        return this.service.post('api/employee/show', { employeeID : userId});
+    }
+
+    updateUser(userData: UserModel, employeeID: String) {
+        return this.service.post('api/employee/update', { userData: userData, employeeID: employeeID });
     }
 }

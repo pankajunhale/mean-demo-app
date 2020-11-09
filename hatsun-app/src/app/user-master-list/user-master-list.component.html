@@ -74,6 +74,7 @@
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Role</th>
                         <th>Status</th>
@@ -88,6 +89,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let userDetails of userDataList.response">
+                        <td>{{userDetails._id}}</td>
                         <td>{{userDetails.UserName}}</td>
                         <td>{{userDetails.RoleID}}</td>
                         <td>{{userDetails.isActive}}</td>
@@ -98,8 +100,8 @@
                         <td>{{userDetails.District}}</td>
                         <td>{{userDetails.Location}}</td>
                         <td>
-                            <a [routerLink]="['/createUser', '', 'edit']">Edit</a>
-                            <a [routerLink]="['/createUser', '', 'view']">View</a>
+                            <a [routerLink]="['/createUser',userDetails._id, 'edit']">Edit</a>
+                            <a [routerLink]="['/createUser',userDetails._id, 'view']">View</a>
                         </td>
                     </tr>
                 </tbody>
