@@ -1,5 +1,4 @@
 export class UserModel {
-
     UserID: String;
     CustomerName: String;
     CustomerID: String;

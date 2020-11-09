@@ -5,7 +5,7 @@
                 <h2 class="page-title">User Master List</h2>
             </div>
             <div class="col-md-6 text-right">
-                <a [routerLink]="['/createUser']" class="btn btn-dark">Add New</a>
+                <a [routerLink]="['/createUser', '', 'create']" class="btn btn-dark">Add New</a>
             </div>
         </div>
     </div>
@@ -74,6 +74,7 @@
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Role</th>
                         <th>Status</th>
@@ -83,10 +84,12 @@
                         <th>State</th>
                         <th>District</th>
                         <th>Location</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let userDetails of userDataList.response">
+                        <td>{{userDetails._id}}</td>
                         <td>{{userDetails.UserName}}</td>
                         <td>{{userDetails.RoleID}}</td>
                         <td>{{userDetails.isActive}}</td>
@@ -96,6 +99,10 @@
                         <td>{{userDetails.State}}</td>
                         <td>{{userDetails.District}}</td>
                         <td>{{userDetails.Location}}</td>
+                        <td>
+                            <a [routerLink]="['/createUser',userDetails._id, 'edit']">Edit</a>
+                            <a [routerLink]="['/createUser',userDetails._id, 'view']">View</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
