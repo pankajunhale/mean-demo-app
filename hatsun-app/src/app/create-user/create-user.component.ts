@@ -13,6 +13,7 @@ export class CreateUserComponent implements OnInit {
   userName:string;
   userModel: UserModel;
   urlRequest: any;
+ 
   userForm = new FormGroup({
     userName: new FormControl(null, [Validators.required]),
     userEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z]*")]),
@@ -24,21 +25,20 @@ export class CreateUserComponent implements OnInit {
   constructor(private userService: UserService, private router: ActivatedRoute) {
     this.userModel = new UserModel();
     this.router.params.subscribe(params => {
-      console.log(params);
       this.urlRequest = params;
     })
    }
 
   ngOnInit() {
-    console.log("Params : " + this.urlRequest.id)
     if(this.urlRequest.pageStatus == 'view'){
       this.userForm.disable();
     }
   }
 
   submit() {
-    console.log("User Model : " + this.userModel.Country)
-    this.userService.submitUser(this.userModel)
+    this.userService.submitUser(this.userModel);
+    this.userService.submitUser(this.userModel).subscribe((response: any) =>{
+    })
   }
 
   get getUserFormRef() { return this.userForm.controls }
