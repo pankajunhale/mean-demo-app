@@ -68,21 +68,20 @@ const update = (req, res, next) => {
     let rolemasterID = req.body.rolemasterID
 
     let updatedData = {
-        RoleID: req.body.RoleID,
-        RoleName: req.body.RoleName,
-        Description: req.body.Description,
-        DealerID: req.body.DealerID,
-        AccessIDs: req.body.AccessIDs,
-        RegionIDs: req.body.RegionIDs,
-        SubRegion1IDs: req.body.SubRegion1IDs,
-        SubRegion2IDs: req.body.SubRegion2IDs,
-        WhenEntered: req.body.WhenEntered,
-        WhenModified: req.body.WhenModified,
-        IsActive: req.body.IsActive,
-        BEID: req.body.BEID,
-        IsGobal:req.body.IsGobal,
-        CustomerID: req.body.CustomerID
-
+        RoleID: req.body.roleData.RoleID,
+        RoleName: req.body.roleData.RoleName,
+        Description: req.body.roleData.Description,
+        DealerID: req.body.roleData.DealerID,
+        AccessIDs: req.body.roleData.AccessIDs,
+        RegionIDs: req.body.roleData.RegionIDs,
+        SubRegion1IDs: req.body.roleData.SubRegion1IDs,
+        SubRegion2IDs: req.body.roleData.SubRegion2IDs,
+        WhenEntered: req.body.roleData.WhenEntered,
+        WhenModified: req.body.roleData.WhenModified,
+        IsActive: req.body.roleData.IsActive,
+        BEID: req.body.roleData.BEID,
+        IsGobal:req.body.roleData.IsGobal,
+        CustomerID: req.body.roleData.CustomerID
     }
 
     RoleMaster.findByIdAndUpdate(rolemasterID, { $set: updatedData })
