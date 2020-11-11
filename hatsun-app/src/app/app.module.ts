@@ -16,6 +16,9 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleMasterComponent } from './role-master/role-master.component';
 import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
+import { CustomerMasterListComponent } from './customer-master-list/customer-master-list.component';
+import { CreateCustomerComponent } from './create-customer/create-customer.component';
+import { CustomerService } from './services/customer.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { RoleAccessRelationComponent } from './role-access-relation/role-access-
     UserMasterListComponent,
     CreateUserComponent,
     RoleMasterComponent,
-    RoleAccessRelationComponent
+    RoleAccessRelationComponent,
+    CustomerMasterListComponent,
+    CreateCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,7 @@ import { RoleAccessRelationComponent } from './role-access-relation/role-access-
     DataTablesModule,
     ReactiveFormsModule
   ],
-  providers: [SampleService,UserService],
+  providers: [SampleService,UserService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
