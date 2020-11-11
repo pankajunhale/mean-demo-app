@@ -28,4 +28,8 @@ export class UserService extends BaseService {
     updateUser(userData: UserModel, employeeID: String) {
         return this.service.post('api/employee/update', { userData: userData, employeeID: employeeID });
     }
+
+    authenticate(userEmail: string,Password:string ): Observable<any>{
+        return this.service.post('api/employee/login',{UserEmail:userEmail,Password:Password})
+    }
 }

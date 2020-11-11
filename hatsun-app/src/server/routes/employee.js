@@ -9,6 +9,7 @@ router.post('/show', controller.show)
 router.post('/store', controller.store)
 router.post('/update', controller.update)
 router.post('/delete', controller.destroy)
+router.post('/login',controller.authenticate)
 
 
 

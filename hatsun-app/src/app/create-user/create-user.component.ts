@@ -43,7 +43,7 @@ export class CreateUserComponent implements OnInit {
       this.userService.getIndividualRecord(this.urlRequest.id).subscribe((response: any) => {
         this.individualResponse = response;
         console.log('show response', this.individualResponse)
-        // this.userForm.setValue(this.individualResponse.response);
+        // this.userForm.patchValue(this.individualResponse.response);
         this.userModel = this.individualResponse.response;
       })
     }
@@ -51,15 +51,13 @@ export class CreateUserComponent implements OnInit {
 
   submit() {
     this.userService.submitUser(this.userModel).subscribe((response: any) => {
-      alert(response.message);
+      alert(response.success.message);
     })
   }
 
   update() {
-    debugger;
     this.userService.updateUser(this.userModel, this.urlRequest.id).subscribe((response: any) => {
-      debugger;
-      alert(response.message);
+      alert(response.success.message);
     })
   }
 

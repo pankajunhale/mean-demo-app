@@ -1,4 +1,7 @@
-const Employee = require('../models/Employee')
+const Employee = require('../models/Employee');
+const bcrypt = require('bcrypt');
+const { db } = require('../models/Employee');
+const { request } = require('http');
 
 // list of employee
 const index  = (req,res,next) => {
@@ -35,6 +38,9 @@ const show = (req,res,next) => {
 // storing to database
 const store = (req,res,next) => {
     debugger;
+    console.log('store');
+    
+
     let employee = new Employee({
     UserID: req.body.UserID,
     CustomerName: req.body.CustomerName,
@@ -48,24 +54,28 @@ const store = (req,res,next) => {
     Location: req.body.Location,
     AccessRoleName: req.body.AccessRoleName,
     CMaccess: req.body.CMaccess,
-    Password: req.body.Password,
     RoleID: req.body.RoleID,
     isActive: req.body.isActive,
     SecurityCode: req.body.SecurityCode,
     PasswordResetedOn: req.body.PasswordResetedOn,
     TokenNo: req.body.TokenNo
-    })
-    employee.save()
-    .then(response => {
-        res.json({
-            message: 'Employee added successfully!'
-        })
-    })
-    .catch(error => {
-        res.json({
-            message: 'An ERROR occoured!'
-        })
-    })
+    });
+    try {
+        bcrypt.genSalt(10, (err, salt) => {
+            console.log('genSalt');
+            bcrypt.hash(req.body.Password, salt, (err, hash) => {
+                employee.Password = hash;
+                employee.saltSecret = salt;
+                employee.save();
+                res.status(200).send({ success: "Record created successfully !" });
+            })
+        });
+    }
+    catch(error) {
+        res.status(500).send({ error: "Error in processing your request:" + error.message });
+    }
+    
+    
 }
 
 // update an empoyee
@@ -124,6 +134,66 @@ const destroy = (req,res,next) => {
     })
 }
 
+function authenticate(req, res)  {
+
+      Employee.findOne(
+        { UserEmail: req.body.UserEmail.toLowerCase() }, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            if (!result) {
+                
+                const data = {
+                    "meta": {
+
+                        "status": "fail",
+                        "message": "Login Failure: Invalid useremail or password"
+                    }
+                };
+                res.status(401).send(data);
+            } else {
+                console.log('compareAsync')
+                const match = compareAsync(req.body.Password, result.Password);
+                match.then(
+                    result => {
+                        if (result) {
+                            res.status(200).send({message: "Login Successful"})
+                        }
+                        if (!result) {
+                            res.status(401).send({message:"Invalid Credentials"})
+                        }
+                    }, 
+                   error => {
+                       res.status(500).send({message:"Generic error"})
+                   }
+                   );
+                
+                
+
+                // const match = bcrypt.compare(req.body.Password, result.Password);
+                // if (match) {
+                //     console.log('in match', match)
+                //     res.json({
+                //         message: "Success"
+                //     })
+                // }
+                // if (!match) {
+                //     res.json({
+                //         message: "failed login"
+                //     })
+                // }
+                
+            }
+        });
+}
+async function compareAsync(param1, param2) {
+    const match = await bcrypt.compare(param1, param2);
+    return match;
+}
+      
+
+
 module.exports = {
-    index,show,store,update,destroy
+    index,show,store,update,destroy,authenticate
 }
