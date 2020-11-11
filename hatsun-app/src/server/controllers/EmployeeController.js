@@ -153,7 +153,6 @@ function authenticate(req, res)  {
                 };
                 res.status(401).send(data);
             } else {
-                console.log('compareAsync')
                 const match = compareAsync(req.body.Password, result.Password);
                 match.then(
                     result => {
@@ -168,22 +167,6 @@ function authenticate(req, res)  {
                        res.status(500).send({message:"Generic error"})
                    }
                    );
-                
-                
-
-                // const match = bcrypt.compare(req.body.Password, result.Password);
-                // if (match) {
-                //     console.log('in match', match)
-                //     res.json({
-                //         message: "Success"
-                //     })
-                // }
-                // if (!match) {
-                //     res.json({
-                //         message: "failed login"
-                //     })
-                // }
-                
             }
         });
 }
