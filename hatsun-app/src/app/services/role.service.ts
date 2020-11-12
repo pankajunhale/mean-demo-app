@@ -26,4 +26,16 @@ export class RoleService extends BaseService {
     updateRole(roleData: RoleModel, rolemasterID: String) {
         return this.service.post('api/rolemaster/update', { roleData: roleData, rolemasterID: rolemasterID });
     }
+
+    findMenuGroupMaster(){
+        return this.service.get('api/menumaster');
+    }
+
+    findMenuModule(MenuGroupId) {
+        return this.service.post('api/menumaster/show', { MenuGroupId : MenuGroupId});
+    }
+
+    findAccessModule(MenuModuleId) {
+        return this.service.post('api/menumaster/showAcessModule', { MenuModuleId : MenuModuleId});
+    }
 }

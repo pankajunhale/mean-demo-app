@@ -7,6 +7,7 @@ const cors = require('cors');
 const EmployeeRoute = require('./routes/employee');
 const RoleMasterRoute = require('./routes/roleMaster');
 const CustomerMasterRoute = require('./routes/customerMaster')
+const MenuMasterRoute = require('./routes/MenuMaster')
 
 mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true,useUnifiedTopology:true} );
 const db = mongoose.connection
@@ -38,3 +39,4 @@ app.listen(PORT,() => {
 app.use('/api/employee', EmployeeRoute)
 app.use('/api/rolemaster', RoleMasterRoute)
 app.use('/api/customer',CustomerMasterRoute)
+app.use('/api/menumaster', MenuMasterRoute)
