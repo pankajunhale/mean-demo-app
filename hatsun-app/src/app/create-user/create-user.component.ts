@@ -16,7 +16,7 @@ export class CreateUserComponent implements OnInit {
   urlRequest: any;
   userForm = new FormGroup({
     userName: new FormControl(null, [Validators.required]),
-    userEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z]*")]),
+    userEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
     userCountry: new FormControl(null, [Validators.required]),
     userState: new FormControl(null, [Validators.required]),
     userDistrict: new FormControl(null, [Validators.required]),
@@ -29,7 +29,6 @@ export class CreateUserComponent implements OnInit {
   constructor(private userService: UserService, private router: ActivatedRoute) {
     this.userModel = new UserModel();
     this.router.params.subscribe(params => {
-      console.log(params);
       this.urlRequest = params;
     })
    }

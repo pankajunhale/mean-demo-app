@@ -4,14 +4,13 @@ import { SampleViewComponent } from './sample/view/sample-view/sample-view.compo
 import { UserMasterListComponent } from './user-master-list/user-master-list.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RoleMasterComponent } from './role-master/role-master.component';
+import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
 
 const routes: Routes = [
   {
-    path: 'home', component: SampleViewComponent
-  },
-  {
-    path: 'sample', component: SampleViewComponent
-  },
+    path: '', component: LoginPageComponent
+  }, 
   {
     path: 'userList', component: UserMasterListComponent
   },
@@ -21,6 +20,12 @@ const routes: Routes = [
   {
     path: 'login', component: LoginPageComponent
   },
+  {
+    path: 'roleMaster', component: RoleMasterComponent
+  },
+  {
+    path: 'roleAccessRelation', component: RoleAccessRelationComponent
+  }
 ];
 
 @NgModule({

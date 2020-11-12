@@ -12,7 +12,8 @@ export class UserMasterListComponent implements OnInit {
   constructor(private userlist: UserService) {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      processing: true
+      processing: true,
+      scrollX: true
     };
   }
 

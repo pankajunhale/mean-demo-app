@@ -1,0 +1,72 @@
+<div class="container-fluid ">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Role Access Relation</h2>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Selection Filter</h3>
+        <div class="section-data-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Role Name</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Menu Main Module</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Sub Module</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group filter-btn-section">
+                        <input type="submit" class="btn btn-primary" (click)="onSubmit()" value="Search" />
+                        <input type="reset" class="btn btn-primary" value="Clear" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">List</h3>
+        <div class="section-data-container">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Page Name</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Create User</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>User List</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-right">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+</div>

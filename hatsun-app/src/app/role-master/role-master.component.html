@@ -1,0 +1,134 @@
+<div class="container-fluid ">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="page-title">Role Master</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" (click)="add()" class="btn btn-dark" data-toggle="modal" data-target="#createRole">Add New</button>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Selection Filter</h3>
+        <div class="section-data-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Role Name</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Status</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group filter-btn-section">
+                        <input type="submit" class="btn btn-primary" (click)="search()" value="Search" />
+                        <input type="reset" class="btn btn-primary" value="Clear" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf = "rolDataList.response != null" class="section-container">
+        <h3 class="section-title">List</h3>
+        <div class="section-data-container">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Role Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let roleData of rolDataList.response">
+                        <td>{{roleData._id}}</td>
+                        <td>{{roleData.RoleName}}</td>
+                        <td>{{roleData.Description}}</td>
+                        <td>{{roleData.IsActive}}</td>
+                        <td>
+                            <button (click)="view('edit', roleData._id)" data-toggle="modal" data-target="#createRole" class="btn-primary"><i class="fa fa-edit"></i></button>
+                            <button (click)="view('view', roleData._id)" data-toggle="modal" data-target="#createRole" class="btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Create Role -->
+<div class="modal fade" id="createRole">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Role</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form [formGroup]="roleMasterForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="roleName">Role Name</label>
+                                <input formControlName="roleName" type="text" id="roleName"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': !roleMasterForm.controls.roleName.valid && roleMasterForm.controls.roleName.touched,
+                                    'is-valid': roleMasterForm.controls.roleName.valid }" 
+                                    [(ngModel)]="roleModel.RoleName" />
+                                <p *ngIf="!roleMasterForm.controls.roleName.valid && roleMasterForm.controls.roleName.touched" class="text-danger">Role Name field is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea formControlName="roleDescription" id="description" rows="2"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': !roleMasterForm.controls.roleDescription.valid && roleMasterForm.controls.roleDescription.touched,
+                                    'is-valid': roleMasterForm.controls.roleDescription.valid }"
+                                    [(ngModel)]="roleModel.Description"></textarea>
+                                <p *ngIf="!roleMasterForm.controls.roleDescription.valid && roleMasterForm.controls.roleDescription.touched" class="text-danger">Role Description field is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="isActive">Is Active</label>
+                                <select formControlName="roleIsActive" id="isActive"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': !roleMasterForm.controls.roleIsActive.valid && roleMasterForm.controls.roleIsActive.touched,
+                                    'is-valid': roleMasterForm.controls.roleIsActive.valid }"
+                                    [(ngModel)]="roleModel.IsActive">
+                                    <option selected [ngValue]=undefined>Select</option>
+                                    <option value=true>Yes</option>
+                                    <option value=false>No</option>
+                                </select>
+                                <p *ngIf="!roleMasterForm.controls.roleIsActive.valid && roleMasterForm.controls.roleIsActive.touched" class="text-danger">Is Active field is required</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer" *ngIf="pageStatus != 'view'">
+                <input type="submit" *ngIf="pageStatus != 'edit'" class="btn btn-primary" [disabled]="!roleMasterForm.valid" (click)="submit()" value="Submit" />
+                <input type="submit" *ngIf="pageStatus == 'edit'" class="btn btn-primary" [disabled]="!roleMasterForm.valid" (click)="update()" value="Update" />
+                <input type="reset" class="btn btn-primary" value="Clear" />
+            </div>
+        </div>
+    </div>
+</div>
