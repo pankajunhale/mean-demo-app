@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { SampleService } from './services/sample.service';
 import { AppRoutingModule } from './app-routing-module';
 import { SampleViewComponent } from './sample/view/sample-view/sample-view.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +15,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleMasterComponent } from './role-master/role-master.component';
 import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { RoleAccessRelationComponent } from './role-access-relation/role-access-
     DataTablesModule,
     ReactiveFormsModule
   ],
-  providers: [SampleService,UserService],
+  providers: [CommonService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
