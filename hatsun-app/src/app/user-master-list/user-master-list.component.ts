@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../services/common.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -7,9 +8,12 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./user-master-list.component.css']
 })
 export class UserMasterListComponent implements OnInit {
+
+  private IS_LOGGED_IN = 'isLoggedIn';
   userDataList: any;
   dtOptions: DataTables.Settings = {};
-  constructor(private userlist: UserService) {
+  constructor(private userlist: UserService, private commonService: CommonService) {
+    this.init();
     this.dtOptions = {
       pagingType: 'full_numbers',
       processing: true,
@@ -25,5 +29,11 @@ export class UserMasterListComponent implements OnInit {
       console.log(response)
       this.userDataList = response;
     });
+  }
+
+  private init(){
+    if(!this.commonService.isUserLoggedIn(this.IS_LOGGED_IN)){
+      this.commonService.redirectToPath('/login',true);
+    }
   }
 }
