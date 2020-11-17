@@ -38,4 +38,8 @@ export class RoleService extends BaseService {
     findAccessModule(MenuModuleId) {
         return this.service.post('api/menumaster/showAcessModule', { MenuModuleId : MenuModuleId});
     }
+
+    findMenuSetup(){
+        return this.service.get('api/menumaster/showMenuSetup');
+    }
 }

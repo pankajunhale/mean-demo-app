@@ -1,13 +1,20 @@
-<div class="master-page">
-    <header>
-        <app-header></app-header>
-    </header>
-    <main>
-        <nav class="sidebar-navigation">
-            <app-sidebar-menu></app-sidebar-menu>
-        </nav>
-        <section class="content">
-            <router-outlet></router-outlet>
-        </section>
-    </main>
-</div>
+<ng-container>
+    <div class="master-page">
+        <ng-container *ngIf="isUserLoggedIn">
+            <header>
+                <app-header></app-header>
+            </header>
+        </ng-container>
+
+        <main>
+            <ng-container *ngIf="isUserLoggedIn">
+                <nav class="sidebar-navigation">
+                    <app-sidebar-menu></app-sidebar-menu>
+                </nav>
+            </ng-container>            
+            <section class="content">
+                <router-outlet></router-outlet>
+            </section>
+        </main>
+    </div>
+</ng-container>

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserModel } from '../model/user.model';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { RoleService } from '../services/role.service';
 
 @Component({
   selector: 'app-create-user',
@@ -14,6 +15,7 @@ export class CreateUserComponent implements OnInit {
   userModel: UserModel = null;
   individualResponse: any;
   urlRequest: any;
+  roleDropdown: any;
   userForm = new FormGroup({
     userName: new FormControl(null, [Validators.required]),
     userEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
@@ -26,7 +28,7 @@ export class CreateUserComponent implements OnInit {
     userRole: new FormControl(null),
     userIsActive: new FormControl(null),
   });
-  constructor(private userService: UserService, private router: ActivatedRoute) {
+  constructor(private userService: UserService, private router: ActivatedRoute, private roleService: RoleService) {
     this.userModel = new UserModel();
     this.router.params.subscribe(params => {
       this.urlRequest = params;
@@ -41,24 +43,23 @@ export class CreateUserComponent implements OnInit {
       debugger;
       this.userService.getIndividualRecord(this.urlRequest.id).subscribe((response: any) => {
         this.individualResponse = response;
-        console.log('show response', this.individualResponse)
-        // this.userForm.setValue(this.individualResponse.response);
         this.userModel = this.individualResponse.response;
       })
     }
+    this.roleService.findAllRoles().subscribe((response: any) => {
+      this.roleDropdown = response.response;
+    })
   }
 
   submit() {
     this.userService.submitUser(this.userModel).subscribe((response: any) => {
-      alert(response.message);
+      alert(response.success.message);
     })
   }
 
   update() {
-    debugger;
     this.userService.updateUser(this.userModel, this.urlRequest.id).subscribe((response: any) => {
-      debugger;
-      alert(response.message);
+      alert(response.success.message);
     })
   }
 

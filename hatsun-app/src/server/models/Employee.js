@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 const Schema = mongoose.Schema
 
 const schema = new Schema({
@@ -74,9 +75,12 @@ const schema = new Schema({
     TokenNo:
     {
         type: String
-    }
+    },
+    saltSecret: String
 
 })
+
+
 
 const Employee = mongoose.model('Employee', schema)
 module.exports = Employee

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { SampleService } from './services/sample.service';
 import { AppRoutingModule } from './app-routing-module';
 import { SampleViewComponent } from './sample/view/sample-view/sample-view.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +18,7 @@ import { RoleAccessRelationComponent } from './role-access-relation/role-access-
 import { CustomerMasterListComponent } from './customer-master-list/customer-master-list.component';
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
 import { CustomerService } from './services/customer.service';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { CustomerService } from './services/customer.service';
     DataTablesModule,
     ReactiveFormsModule
   ],
-  providers: [SampleService,UserService, CustomerService],
+  providers: [CommonService,UserService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
