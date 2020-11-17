@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const { stringify } = require('querystring');
 const Schema = mongoose.Schema
 
 const schema = new Schema({
@@ -76,7 +78,11 @@ const schema = new Schema({
     {
         type: String
     },
-    saltSecret: String
+    saltSecret: String,
+    
+    resetToken:String,
+    expireToken: Date
+
 
 })
 
