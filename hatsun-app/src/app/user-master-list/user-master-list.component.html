@@ -74,7 +74,6 @@
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Name</th>
                         <th>Role</th>
                         <th>Status</th>
@@ -89,10 +88,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let userDetails of userDataList.response">
-                        <td>{{userDetails._id}}</td>
                         <td>{{userDetails.UserName}}</td>
-                        <td>{{userDetails.RoleID}}</td>
-                        <td>{{userDetails.isActive}}</td>
+                        <td>{{userDetails.Roles.RoleName}}</td>
+                        <td>
+                            <span *ngIf="userDetails.isActive == true">Active</span>
+                            <span *ngIf="userDetails.isActive == false">Inactive</span>
+                        </td>
                         <td>{{userDetails.UserEmail}}</td>
                         <td>{{userDetails.UserMobile}}</td>
                         <td>{{userDetails.Country}}</td>

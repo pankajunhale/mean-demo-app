@@ -5,7 +5,23 @@ const { request } = require('http');
 
 // list of employee
 const index  = (req,res,next) => {
-    Employee.find()
+    Employee.aggregate([
+        {$addFields: {
+            RoleID: { $toObjectId: "$RoleID" }
+         }
+        },
+        {
+            $lookup : {
+                from: "rolemasters",
+                localField: "RoleID",
+                foreignField: "_id",
+                as : "Roles"
+            }
+        },
+        {
+            $unwind: "$Roles"
+        }
+      ])
     .then(response => {
         res.json({
             response
