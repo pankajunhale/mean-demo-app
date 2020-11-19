@@ -6,22 +6,36 @@ const { request } = require('http');
 // list of employee
 const index  = (req,res,next) => {
     Employee.aggregate([
-        {$addFields: {
-            RoleID: { $toObjectId: "$RoleID" }
-         }
-        },
-        {
-            $lookup : {
-                from: "rolemasters",
-                localField: "RoleID",
-                foreignField: "_id",
-                as : "Roles"
-            }
-        },
-        {
-            $unwind: "$Roles"
-        }
-      ])
+        {$addFields: { RoleID: { $toObjectId: "$RoleID" } } },
+        { $lookup : {
+            from: "rolemasters",
+            localField: "RoleID",
+            foreignField: "_id",
+            as : "Roles"
+        } },
+        { $unwind: "$Roles" },
+        { $lookup : {
+            from: "CountryMaster",
+            localField: "Country",
+            foreignField: "CountryCode",
+            as : "Country"
+        } },
+        { $unwind: "$Country" },
+        { $lookup : {
+            from: "StateMaster",
+            localField: "State",
+            foreignField: "Region_Code",
+            as : "State"
+        } },
+        { $unwind: "$State" },
+        { $lookup : {
+            from: "CityMaster",
+            localField: "District",
+            foreignField: "CityCode",
+            as : "City"
+        } },
+        { $unwind: "$City" }
+        ])
     .then(response => {
         res.json({
             response

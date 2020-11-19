@@ -96,13 +96,13 @@
                         </td>
                         <td>{{userDetails.UserEmail}}</td>
                         <td>{{userDetails.UserMobile}}</td>
-                        <td>{{userDetails.Country}}</td>
-                        <td>{{userDetails.State}}</td>
-                        <td>{{userDetails.District}}</td>
+                        <td>{{userDetails.Country.Country}}</td>
+                        <td>{{userDetails.State.State}}</td>
+                        <td>{{userDetails.City.Name}}</td>
                         <td>{{userDetails.Location}}</td>
                         <td>
-                            <a [routerLink]="['/createUser',userDetails._id, 'edit']">Edit</a>
-                            <a [routerLink]="['/createUser',userDetails._id, 'view']">View</a>
+                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'edit']"><i class="fa fa-edit"></i></button>
+                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'view']"><i class="fa fa-eye" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                 </tbody>
