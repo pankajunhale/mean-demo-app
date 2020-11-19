@@ -2,9 +2,9 @@ export class CustomerModel {
     CustomerID: String;
     CustomerName: String;
     Address: String;
-    Country: Number;
-    State: Number;
-    District: Number;
+    Country: String;
+    State: String;
+    District: String;
     PinCode: Number;
     Contact: String;
     Email: String;

@@ -84,9 +84,9 @@
                         <td>{{customerData.Address}}</td>
                         <td>{{customerData.Email}}</td>
                         <td>{{customerData.Contact}}</td>
-                        <td>{{customerData.Country}}</td>
-                        <td>{{customerData.State}}</td>
-                        <td>{{customerData.District}}</td>
+                        <td>{{customerData.Country.Country}}</td>
+                        <td>{{customerData.State.State}}</td>
+                        <td>{{customerData.City.Name}}</td>
                         <td>
                             <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'edit']"><i class="fa fa-edit"></i></button>
                             <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'view']"><i class="fa fa-eye" aria-hidden="true"></i></button>

@@ -2,7 +2,29 @@ const CustomerMaster = require('../models/Customermaster')
 
 // list of employee
 const index = (req, res, next) => {
-    CustomerMaster.find()
+    CustomerMaster.aggregate([
+        { $lookup : {
+            from: "CountryMaster",
+            localField: "Country",
+            foreignField: "CountryCode",
+            as : "Country"
+        } },
+        { $unwind: "$Country" },
+        { $lookup : {
+            from: "StateMaster",
+            localField: "State",
+            foreignField: "Region_Code",
+            as : "State"
+        } },
+        { $unwind: "$State" },
+        { $lookup : {
+            from: "CityMaster",
+            localField: "District",
+            foreignField: "CityCode",
+            as : "City"
+        } },
+        { $unwind: "$City" }
+        ])
         .then(response => {
             res.json({
                 response

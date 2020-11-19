@@ -49,9 +49,9 @@
               <select formControlName="customerCountry" id="customerCountry" [ngClass]="{'form-control': true, 
                 'is-invalid':!getcustomerFormRef.customerCountry.valid && getcustomerFormRef.customerCountry.touched,
                 'is-valid': getcustomerFormRef.customerCountry.valid}"
-                [(ngModel)]="customerModel.Country" >
+                [(ngModel)]="customerModel.Country" (change)="findState()">
                 <option selected [ngValue]=undefined>Select</option>
-                <option value="1">India</option>
+                <option *ngFor="let country of countryDropdown" value="{{country.CountryCode}}">{{ country.Country }}</option>
               </select>
               <p *ngIf="getcustomerFormRef.customerCountry.errors?.required && getcustomerFormRef.customerCountry.touched" class="text-danger">Country field is required</p>
             </div>
@@ -64,9 +64,9 @@
               <select formControlName="customerState" id="customerState" [ngClass]="{'form-control': true, 
                 'is-invalid':!getcustomerFormRef.customerState.valid && getcustomerFormRef.customerState.touched,
                 'is-valid': getcustomerFormRef.customerState.valid}"
-                [(ngModel)]="customerModel.State">
+                [(ngModel)]="customerModel.State" (change)="findCity()">
                 <option selected [ngValue]=undefined>Select</option>
-                <option value="1">Maharashtra</option>
+                <option *ngFor="let state of stateDropdown" value="{{state.Region_Code}}">{{state.State}}</option>
               </select>
               <p *ngIf="getcustomerFormRef.customerState.errors?.required && getcustomerFormRef.customerState.touched" class="text-danger">State field is required</p>
             </div>
@@ -81,7 +81,7 @@
                 'is-valid': getcustomerFormRef.customerDistrict.valid}"
                 [(ngModel)]="customerModel.District">
                 <option selected [ngValue]=undefined>Select</option>
-                <option value="1">Thane</option>
+                <option *ngFor="let district of districtDropdown" value="{{district.CityCode}}">{{district.Name}}</option>
               </select>
               <p *ngIf="getcustomerFormRef.customerDistrict.errors?.required && getcustomerFormRef.customerDistrict.touched" class="text-danger">District field is required</p>
             </div>
