@@ -1,9 +1,11 @@
+const sendmail = require('../routes/sendMail')
 const Employee = require('../models/Employee');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const mailgun = require('mailgun-js')
 const nodemailer = require('nodemailer')
 const jwt = require('jsonwebtoken');
-
+ 
 
 
 // list of employee
@@ -261,7 +263,7 @@ async function compareAsync(param1, param2) {
     return match;
 }
 
-// const forgotPassword = (req,res) => {
+//const forgotPassword = (req,res) => {
 //     const {email} = req.body;
 
 //     Employee.findOne({email},(err,user)=> {
@@ -277,46 +279,84 @@ async function compareAsync(param1, param2) {
 //             html:`<h2> Please click on the given link to reset your password</h2>
 //                     <p>${process.env.CLIENT_URL}/resetpassword/${token}</p>`
 //         };
-//         return Employee.updateOne({resetLink: token},(err,success) {
+//         return user.updateOne({resetLink: token},(err,success) => {
 //             if(err || !success){
-//                 return res.status(400).json({error:"reset passwordlink error"});
+//                 return res.status(400).json({error:"reset password link error"});
 //             }
 //             else{
+
                 
 //             }
 //         })
 //     })
 // }
 
-// const resetPassword = (req,res)=> {
+//const resetPassword = (req,res)=> {
 //     crypto.randomBytes(32,(err,buffer)=> {
 //         if(err || !buffer){
 //             console.log(err);
 //         }
 //         const token = buffer.toString("hex")
-//         Employee.findOne({email:req.body.email})
-//         .then(user => {
-//             if(!user){
-//                 return res.status(422).json({error :"User Does not exist"})
+//         Employee.findOne({ UserEmail: req.body.UserEmail},(err,user)=> {
+//             console.log(user)
+//             if (!user) {
+//                     console.log(user)
+//                     return res.status(422).json({ error: "User Does not exist" })
+//                 }
+//             if (err){
+//                 return res.status(200);
 //             }
-//             user.resetToken = token
-//             user.expireToken = Date.now()+ 3600000
-//             user.save().then((result)=>{
-//                 transporter.sendMail({
-//                     to:user.email,
-//                     from:"no-reply@copia.com",
-//                     subject:"Password Reset",
-//                     html:`
+
+//                 user.resetToken = token
+//                 user.expireToken = Date.now() + 3600000
+//                 user.save().then((result) => {
+//                     transporter.sendMail({
+//                         to: user.email,
+//                         from: "no-reply@copia.com",
+//                         subject: "Password Reset",
+//                         html: `
 //                     <p>Your password reset token is </p>
 //                     <h5> click on this <a href = "http://localhost:3000/api/employee/reset/${token}"`
-//                 })
-//                 res.json({message:"check your Email"})
+//                     })
+//                 res.json({ message: "check your Email" })
 //             })
 //         })
-//     });
-// }
+//     })
+        
+//}
+    
+    // const forgotPassword = {
+    
+    //     async sendResetLink(req, res, next) {
+    //         console.log('hello')
+    //         try{
+    //             const { UserEmail } = req.body;
+    //             const user = Employee.findOne({ where: { UserEmail}})
+    //             console.log(user)
+                
+    //             if(!user){
+    //                 return res.status(404).send({error:'User Not Found'});
+    //                 }
+    //                 const token = createToken(user);
+    //                 const link  = `${req.protocol}://${req.host}/reset_password/${token}`
+    //             await sendEmail(
+    //                 UserEmail,
+    //                 'noreply@copia.com',
+    //                 'Reset Password Link'
+    //                 `<div> click the link below  to reset  your password</div><br/>
+    //                 <div>${link}</div>`
+                    
+    //             );
+    //             return res.status(200).send({message:"Password reset link has been successfully created"});
 
-      
+    //         }
+    //         catch(e){
+    //             return next (new Error(e));
+    //         }
+    //     }
+    // }
+    
+       
 
 
 module.exports = {
