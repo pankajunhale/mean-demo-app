@@ -2,6 +2,7 @@ const express = require('express')
 var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
+var bcrypt = require('bcrypt')
 
 
 const router = express.Router()
@@ -15,31 +16,37 @@ router.post('/store', controller.store)
 router.post('/update', controller.update)
 router.post('/delete', controller.destroy)
 router.post('/login',controller.authenticate)
-//router.post('/forgotpasswordResponse',controller.forgotpasswordResponse)
-//router.put('/reset',controller.resetPassword)
-// router.post('/forgot-password', controller.forgotPassword.sendResetLink);
+
+
 router.post('/forgotPassword', function (req, res, next) {
     async.waterfall([
-        function (done) {
-            crypto.randomBytes(20, function (err, buf) {
-                var token = buf.toString('hex');
-                done(err, token);
-            });
-        },
-        function (token, done) {
-            Employee.findOne({ UserEmail: req.body.email }, function (err, user) {
-                if (!user) {
-                    console.log(user,user.email)
+        // function (done) {
+        //     crypto.randomBytes(3, function (err, buf) {
+        //         token = parseInt(buf.toString('hex'), 16).toString().substr(0, 6);
+        //         console.log(token)            
+        //         done(err, token);
+        //     });
+        // },
+        function ( done) {
+            Employee.findOne({ UserEmail: req.body.UserEmail }, function (err, user) {
+                if (!user || err ) {
                     res.status(404).json({error :'No account with that email address exists.'});
                     ;
                 }
-                console.log(user,user.UserEmail)
-                user.resetPasswordToken = token;
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                else{
+                    crypto.randomBytes(3, function (err, buf) {
+                        token = parseInt(buf.toString('hex'), 16).toString().substr(0, 6);
+                        console.log(token);
+                        user.resetPasswordToken = token;
+                        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                        console.log(user, user.UserEmail)
+                        user.save(function (err) {
+                            done(err, token, user);
+                            //done(err, token);
+                        });
 
-                user.save(function (err) {
-                    done(err, token, user);
-                });
+                    });
+                }
             });
         },
         function (token, user, done) {
@@ -55,39 +62,48 @@ router.post('/forgotPassword', function (req, res, next) {
                 from: 'passwordreset@demo.com',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
-                    'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                    'http://' + req.headers.host + '/employee/reset/' + token + '\n\n' +
+                    'Please enter  the following otp\n\n' +
+                     token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             //if 
             smtpTransport.sendMail(mailOptions, function (err) {
-                res.status(200).json({info: 'An e-mail has been sent to ' + user.UserEmail + ' with further instructions.'});
-                done(err, 'done');
+                if (err){
+                    res.status(504).json({ msg : "error occoured" });
+                }else
+                     res.status(200).json({info: 'An e-mail has been sent to ' + user.UserEmail + ' with further instructions.'});
+                
             });
-        }
-    ], function (err) {
-        if (err) return next(err);
-        //set status
-        res.redirect('/forgotpassword');
-    });
+        }],);
 });
-router.post('/reset/:token', function (req, res) {
+
+
+router.post('/reset', function (req, res) {
     async.waterfall([
         function (done) {
-            User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+            Employee.findOne({resetPasswordToken : req.body.otp }, function (err, user) {
+                if (err){
+                    res.status(500).json({error : "generic error"})
+                }
                 if (!user) {
                     res.status(400).json({error :'Password reset token is invalid or has expired.'});
                 }
-
-                user.password = req.body.password;
-                user.resetPasswordToken = undefined;
-                user.resetPasswordExpires = undefined;
-                console.log()
-                Employee.save(function (err) {
-                    req.logIn(user, function (err) {
-                        done(err, user);
-                    });
-                });
+                else{
+                     bcrypt.genSalt(10, (err, salt) => {
+                            
+                            bcrypt.hash(req.body.Password, salt, (err, hash) => {
+                                user.Password = hash;
+                                user.saltSecret = salt;
+                                user.resetPasswordToken = undefined;
+                                user.resetPasswordExpires = undefined;
+                                user.save(function (err){
+                                    res.status(200).send({ success: "Password has been changed !" });
+                                    done(err, user);
+                                });
+                               
+                            })
+                        });
+                    }
             });
         },
         function (user, done) {
@@ -110,9 +126,7 @@ router.post('/reset/:token', function (req, res) {
                 done(err);
             });
         }
-    ], function (err) {
-        res.redirect('/');
-    });
+    ],);
 });
 
 

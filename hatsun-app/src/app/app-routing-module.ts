@@ -6,6 +6,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RoleMasterComponent } from './role-master/role-master.component';
 import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
+import { CustomerMasterListComponent } from './customer-master-list/customer-master-list.component';
+import { CreateCustomerComponent } from './create-customer/create-customer.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,12 @@ const routes: Routes = [
   },
   {
     path: 'roleAccessRelation', component: RoleAccessRelationComponent
+  },
+  {
+    path: 'customerList', component: CustomerMasterListComponent
+  },
+  {
+    path: 'createCustomer/:id/:pageStatus', component: CreateCustomerComponent
   }
 ];
 

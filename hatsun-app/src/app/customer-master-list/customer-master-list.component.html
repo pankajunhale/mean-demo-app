@@ -2,10 +2,10 @@
     <div class="page-header">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="page-title">User Master List</h2>
+                <h2 class="page-title">Customer Master List</h2>
             </div>
             <div class="col-md-6 text-right">
-                <a [routerLink]="['/createUser', '', 'create']" class="btn btn-dark">Add New</a>
+                <a [routerLink]="['/createCustomer', '', 'create']" class="btn btn-dark">Add New</a>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">User Name</label>
+                        <label for="">Customer Name</label>
                         <input type="text" class="form-control" />
                     </div>
                 </div>
@@ -51,58 +51,47 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="">Role</label>
-                        <select name="" id="" class="form-control">
-                            <option value="">Select</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 text-right">
+                <div class="col-md-9 text-right">
                     <div class="form-group filter-btn-section">
-                        <input type="submit" class="btn btn-primary" (click)="onSubmit()" value="Search" />
+                        <input type="submit" class="btn btn-primary" (click)="search()" value="Search" />
                         <input type="reset" class="btn btn-primary" value="Clear" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="userDataList != null" class="section-container">
+    <div *ngIf="customerDataList.response != null" class="section-container">
         <h3 class="section-title">List</h3>
         <div class="section-data-container">
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
-                        <th>Role</th>
-                        <th>Status</th>
+                        <th>Address</th>
                         <th>Email</th>
-                        <th>contact</th>
+                        <th>Contact</th>
                         <th>Country</th>
                         <th>State</th>
                         <th>District</th>
-                        <th>Location</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let userDetails of userDataList.response">
-                        <td>{{userDetails.UserName}}</td>
-                        <td>{{userDetails.Roles.RoleName}}</td>
+                    <tr *ngFor="let customerData of customerDataList.response">
+                        <td>{{customerData._id}}</td>
+                        <td>{{customerData.CustomerName}}</td>
+                        <td>{{customerData.Address}}</td>
+                        <td>{{customerData.Email}}</td>
+                        <td>{{customerData.Contact}}</td>
+                        <td>{{customerData.Country.Country}}</td>
+                        <td>{{customerData.State.State}}</td>
+                        <td>{{customerData.City.Name}}</td>
                         <td>
-                            <span *ngIf="userDetails.isActive == true">Active</span>
-                            <span *ngIf="userDetails.isActive == false">Inactive</span>
-                        </td>
-                        <td>{{userDetails.UserEmail}}</td>
-                        <td>{{userDetails.UserMobile}}</td>
-                        <td>{{userDetails.Country.Country}}</td>
-                        <td>{{userDetails.State.State}}</td>
-                        <td>{{userDetails.City.Name}}</td>
-                        <td>{{userDetails.Location}}</td>
-                        <td>
-                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'edit']"><i class="fa fa-edit"></i></button>
-                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'view']"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'edit']"><i
+                                    class="fa fa-edit"></i></button>
+                            <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'view']"><i
+                                    class="fa fa-eye" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                 </tbody>

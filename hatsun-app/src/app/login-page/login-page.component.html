@@ -1,4 +1,5 @@
-<div class="container-fluid login-page">
+<!-- Login Page Section -->
+<div class="container-fluid login-page" *ngIf="PageStatus == 'loginPage'">
     <div class="login-container">
         <h1 class="login-title vertical-spacing">ACCOUNT LOGIN</h1>
         <form [formGroup]="loginForm">
@@ -20,7 +21,7 @@
                 <div class="form-group vertical-spacing">
                     <label for="pwd">Password:</label>
                     <div class="col-sm-12 nopadding">
-                        <input formControlName="userPassword" type="text" id="userPassword" class="form-control"/>
+                        <input formControlName="userPassword" type="password" id="userPassword" class="form-control"/>
                         <a href="#"><i class="fa fa-eye eye-icon"></i></a>
                     </div>
                 </div>
@@ -33,10 +34,48 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-right nopadding">
-                        <a class="forgot-pass-label" href="#">Forgot Password?</a>
+                        <a class="forgot-pass-label" (click)="enterEmailPage()">Forgot Password?</a>
                     </div>
                 </div>
                 <button type="submit" (click)="auth()" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Email Page Section -->
+<div class="container-fluid login-page" *ngIf="PageStatus == 'emailPage'">
+    <div class="login-container">
+        <h1 class="login-title vertical-spacing">RESET PASSWORD</h1>
+        <form [formGroup]="emailForm">
+            <div>
+                <div class="form-group vertical-spacing">
+                    <label for="username">User Email:</label>
+                    <input formControlName="userEmail" type="text" id="" [ngClass]="{'form-control': true}" />
+                </div>
+                <button type="submit" (click)="sendOTP()" class="btn btn-primary">Send OTP</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- OTP Page Section -->
+<div class="container-fluid login-page" *ngIf="PageStatus == 'resetPassPage'">
+    <div class="login-container">
+        <h1 class="login-title vertical-spacing">RESET PASSWORD</h1>
+        <form [formGroup]="resetForm">
+            <div>
+                <div class="form-group vertical-spacing">
+                    <label for="username">Enter OTP:</label>
+                    <input formControlName="otp" type="text" id="" [ngClass]="{'form-control': true}" />
+                </div>
+                <div class="form-group vertical-spacing">
+                    <label for="username">Set Password:</label>
+                    <input formControlName="password" type="text" id="" [ngClass]="{'form-control': true}" />
+                </div>
+                <div class="form-group vertical-spacing">
+                    <label for="username">Re-enter Password:</label>
+                    <input type="text" id="" [ngClass]="{'form-control': true}" />
+                </div>
+                <button type="submit" (click)="resetPassword()" class="btn btn-primary">Reset Password</button>
             </div>
         </form>
     </div>
