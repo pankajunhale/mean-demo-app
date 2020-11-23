@@ -42,4 +42,8 @@ export class RoleService extends BaseService {
     findMenuSetup(){
         return this.service.get('api/menumaster/showMenuSetup');
     }
+
+    findMenuSetupList() {
+        return this.service.get('api/menumaster/showMenuSetupList');
+    }
 }

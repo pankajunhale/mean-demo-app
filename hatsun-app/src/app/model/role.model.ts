@@ -19,3 +19,11 @@ export class RoleModel {
     }
 }
 
+export class MenuSetup {
+    GroupId: String;
+    GroupName: String;
+    MenuModuleName: String;
+    AccessModuleName: String;
+    Roles : String;
+}
+

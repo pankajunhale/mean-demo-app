@@ -8,13 +8,13 @@
     </div>
     <div class="section-container">
         <h3 class="section-title">Selection Filter</h3>
-        <div class="section-data-container">
+        <form class="section-data-container" [formGroup]="roleAccessForm">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Role Name</label>
-                        <select name="" id="" class="form-control">
-                            <option value="">Select</option>
+                        <select formControlName="RoleName" name="" id="" class="form-control" [(ngModel)]="role">
+                            <option [ngValue]=undefined>Select</option>
                             <option *ngFor="let role of roleDropdown" value="{{role._id}}">{{role.RoleName}}</option>
                         </select>
                     </div>
@@ -22,31 +22,25 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Menu Main Module</label>
-                        <select #mainmenu (change)="getMenuModule(mainmenu.value)" name="" id="" class="form-control">
-                            <option value="">Select</option>
-                            <option *ngFor="let menuGroup of MenuGroupDropdown" value="{{menuGroup._id}}">{{menuGroup.GroupName}}</option>
+                        <select formControlName="MenuGroup" [(ngModel)]="MenusGroup" name="" id="" class="form-control">
+                            <option selected [ngValue]=undefined>Select</option>
+                            <option *ngFor="let menuGroup of MenuGroupDropdown" [ngValue]="menuGroup">{{menuGroup.GroupName}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div *ngIf="MenuSetup != null" class="col-md-3">
                     <div class="form-group">
                         <label for="">Sub Module</label>
-                        <select name="" id="sub-module" class="form-control">
-                            <option value="">Select</option>
-                            <option *ngFor="let menuModule of MenuModuleDropdown" value="{{menuModule._id}}">{{menuModule.ModuleName}}</option>
+                        <select formControlName="MenuModule" [(ngModel)]="MenuModule" name="" id="sub-module" class="form-control">
+                            <option selected [ngValue]=undefined>Select</option>
+                            <option *ngFor="let menuModule of MenusGroup.MenuModule" [ngValue]="menuModule" >{{menuModule.MenuModuleName}}</option>
                         </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group filter-btn-section">
-                        <input type="submit" class="btn btn-primary" (click)="getAccessModule()" value="Search" />
-                        <input type="reset" class="btn btn-primary" value="Clear" />
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-    <div *ngIf="AccessModuleList != null" class="section-container">
+    <div *ngIf="MenuModule != null" class="section-container">
         <h3 class="section-title">List</h3>
         <div class="section-data-container">
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
@@ -57,17 +51,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let accessModule of AccessModuleList">
-                        <td>{{accessModule.Title}}</td>
-                        <td><input type="checkbox"></td>
+                    <tr *ngFor = "let accessModule of MenuModule.AccessModule" >
+                        <td>{{accessModule.AccessModuleName}}</td>
+                        <td><input (click)="PageAccess(accessModule)" type="checkbox"></td>
                     </tr>
-                    
                 </tbody>
             </table>
         </div>
         <br>
         <div class="text-right">
-            <input type="submit" class="btn btn-primary" value="Submit" />
+            <input type="submit" class="btn btn-primary" (click)="submit()" value="Submit" />
         </div>
     </div>
     

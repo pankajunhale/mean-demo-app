@@ -80,10 +80,23 @@ const showMenuSetup = (req, res, next) => {
                 message: 'An Error Occoured!'
             })
         })
+}
 
-       
+// show MenuSetupList
+const showMenuSetupList = (req, res, next) => {
+    MenuMaster.MenuSetupList.find()
+        .then(response => {
+            res.json({
+                response
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'An Error Occoured!'
+            })
+        })
 }
 
 module.exports = {
-    index, show, showAccessModule, showMenuSetup
+    index, show, showAccessModule, showMenuSetup, showMenuSetupList
 }

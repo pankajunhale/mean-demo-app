@@ -8,5 +8,6 @@ router.get('/', controller.index)
 router.post('/show', controller.show)
 router.post('/showAcessModule', controller.showAccessModule)
 router.get('/showMenuSetup', controller.showMenuSetup)
+router.get('/showMenuSetupList', controller.showMenuSetupList)
 
 module.exports = router

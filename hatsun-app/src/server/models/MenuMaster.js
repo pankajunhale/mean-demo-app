@@ -147,15 +147,18 @@ const AccessModuleSchema = new Schema({
 })
 
 const MenuSetupSchema = new Schema({})
+const MenuSetupListSchema = new Schema({})
 
 const MenuMaster = mongoose.model('MenuMaster', MenuGroupMasterSchema, "MenuGroupMaster")
 const MenuModuleMaster = mongoose.model('MenuModuleMaster', MenuModuleSchema, "MenuModule")
 const AccessModuleMaster = mongoose.model('AccessModuleMaster', AccessModuleSchema, "AccessModuleMaster")
 const MenuSetupMaster = mongoose.model('MenuSetupMaster',MenuSetupSchema, "RoleAccessRelation")
+const MenuSetupList = mongoose.model('MenuSetupList',MenuSetupListSchema, "MenuSetup")
 module.exports = {
     MenuMaster: MenuMaster,
     MenuModuleMaster: MenuModuleMaster,
     AccessModuleMaster: AccessModuleMaster,
-    MenuSetupMaster: MenuSetupMaster
+    MenuSetupMaster: MenuSetupMaster,
+    MenuSetupList: MenuSetupList
 }
 // module.exports = MenuMaster
