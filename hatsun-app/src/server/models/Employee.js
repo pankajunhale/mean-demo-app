@@ -1,20 +1,23 @@
-const mongoose  = require('mongoose');
-const Schema =  mongoose.Schema
+const mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const Schema = mongoose.Schema
 
-const employeeSchema = new Schema({
-    UserID: 
+const schema = new Schema({
+     
+    UserID:
     {
         type: String
     },
-    CustomerName: 
+    CustomerName:
     {
         type: String
     },
-    CustomerID: 
+    CustomerID:
     {
         type: String
     },
-    UserName: 
+    UserName:
     {
         type: String
     },
@@ -26,43 +29,43 @@ const employeeSchema = new Schema({
     {
         type: String
     },
-    Country: 
+    Country:
     {
         type: String
     },
-    State: 
+    State:
     {
         type: String
     },
-    District: 
+    District:
     {
         type: String
     },
-    Location: 
+    Location:
     {
         type: String
     },
-    AccessRoleName: 
+    AccessRoleName:
     {
         type: String
     },
-    CMaccess: 
+    CMaccess:
     {
         type: String
     },
-    Password: 
+    Password:
     {
         type: String
     },
-    RoleID: 
+    RoleID:
     {
         type: String
     },
-    isActive: 
+    isActive:
     {
         type: Boolean
     },
-    SecurityCode: 
+    SecurityCode:
     {
         type: String
     },
@@ -70,12 +73,24 @@ const employeeSchema = new Schema({
     {
         type: String
     },
-    TokenNo: 
+    TokenNo:
     {
         type: String
-    }
+    },
+    saltSecret: String,
     
-},)
+    // resetToken:String,
+    // expireToken:  Date
+    resetPasswordToken: 
+    {
+        type :String, default:"null"},
+    resetPasswordExpires: {
+        type :Date, default :"null"}
+   
 
-const Employee = mongoose.model('Employee', employeeSchema)
+})
+
+
+
+const Employee = mongoose.model('Employee', schema)
 module.exports = Employee

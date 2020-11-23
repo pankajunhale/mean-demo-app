@@ -1,1 +1,49 @@
 .inline-block { display: inline-block }
+.nopadding { padding: 0; }
+.page-header {
+    margin: 0 0 15px 0;
+}
+.page-title {
+    font-size: 24px;
+}
+
+.section-container { margin: 0 0 15px 0; }
+
+.section-title {
+    font-size: 18px;
+    letter-spacing: .5px;
+    background: #3a3737;
+    padding: 10px 10px;
+    margin: 0;
+    color: #fff;
+}
+
+.section-data-container {
+    border: 1px solid #3a3737;
+    padding: 12px 8px;
+}
+
+.filter-btn-section {
+    padding: 32px 0 0 0;
+}
+
+.filter-btn-section input[type="submit"], .filter-btn-section input[type="reser"] {
+    margin: 0 5px 0 0;
+}
+
+.customize-mandatory {
+    color: red;
+    font-size: 8px !important;
+}
+
+.form-submit-container input[type="submit"],.form-submit-container input[type="reset"] {
+    margin: 0 0 0 5px;
+} 
+
+.modal-header {
+    padding: 8px 10px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.modal-title { font-size: 20px; }

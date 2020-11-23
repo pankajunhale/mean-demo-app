@@ -13,7 +13,7 @@
                     <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.ParentMenu}}</a>
                     <ul class="level-3" *ngIf = "AnotherMenuSelectionId == level2.ParentId">
                         <li *ngFor = "let level3 of level2.ChieldMenu">
-                            <a class="menu-link" href="">{{level3.ChieldMenu}}</a>
+                            <a class="menu-link" [routerLink]="[level3.link]">{{level3.ChieldMenu}}</a>
                         </li>
                     </ul>
                 </li>

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { SampleService } from './services/sample.service';
 import { AppRoutingModule } from './app-routing-module';
 import { SampleViewComponent } from './sample/view/sample-view/sample-view.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +9,16 @@ import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MasterPageComponent } from './master-page/master-page.component';
+import { UserMasterListComponent } from './user-master-list/user-master-list.component';
+import { UserService } from './services/user.service';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RoleMasterComponent } from './role-master/role-master.component';
+import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
+import { CustomerMasterListComponent } from './customer-master-list/customer-master-list.component';
+import { CreateCustomerComponent } from './create-customer/create-customer.component';
+import { CustomerService } from './services/customer.service';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   declarations: [
@@ -18,15 +27,22 @@ import { MasterPageComponent } from './master-page/master-page.component';
     LoginPageComponent,
     SidebarMenuComponent,
     HeaderComponent,
-    MasterPageComponent
+    MasterPageComponent,
+    UserMasterListComponent,
+    CreateUserComponent,
+    RoleMasterComponent,
+    RoleAccessRelationComponent,
+    CustomerMasterListComponent,
+    CreateCustomerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
-  providers: [SampleService],
+  providers: [CommonService,UserService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

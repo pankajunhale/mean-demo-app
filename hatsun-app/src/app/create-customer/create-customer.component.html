@@ -1,0 +1,153 @@
+<div class="container-fluid ">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="page-title" *ngIf="urlRequest.pageStatus == 'create'">Create Customer</h2>
+        <h2 class="page-title" *ngIf="urlRequest.pageStatus == 'view'">customer Details</h2>
+        <h2 class="page-title" *ngIf="urlRequest.pageStatus == 'edit'">Update customer</h2>
+      </div>
+      <div class="col-md-6 text-right">
+        <a [routerLink]="['/customerList']" class="btn btn-dark">Customer List</a>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <h3 class="section-title">Create Customer</h3>
+    <div class="section-data-container">
+      <form [formGroup]="customerForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="customerName">Name
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="customerName" type="text" id="customerName" [ngClass]="{'form-control': true, 
+                'is-invalid':!getcustomerFormRef.customerName.valid && getcustomerFormRef.customerName.touched,
+                'is-valid': getcustomerFormRef.customerName.valid}" 
+                [(ngModel)]="customerModel.CustomerName"/>
+              <p *ngIf="!getcustomerFormRef.customerName.valid && getcustomerFormRef.customerName.touched" class="text-danger">Name field is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="customerEmail" type="text" id="email" [ngClass]="{'form-control': true, 
+                'is-invalid':!getcustomerFormRef.customerEmail.valid && getcustomerFormRef.customerEmail.touched,
+                'is-valid': getcustomerFormRef.customerEmail.valid}" 
+                [(ngModel)]="customerModel.Email"/>
+              <p *ngIf="getcustomerFormRef.customerEmail.errors?.required && getcustomerFormRef.customerEmail.touched" class="text-danger">Email field is required</p>
+              <p *ngIf="getcustomerFormRef.customerEmail.errors?.pattern && getcustomerFormRef.customerEmail.touched" class="text-danger">Enter valid email address</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerCountry">Country
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <select formControlName="customerCountry" id="customerCountry" [ngClass]="{'form-control': true, 
+                'is-invalid':!getcustomerFormRef.customerCountry.valid && getcustomerFormRef.customerCountry.touched,
+                'is-valid': getcustomerFormRef.customerCountry.valid}"
+                [(ngModel)]="customerModel.Country" (change)="findState()">
+                <option selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let country of countryDropdown" value="{{country.CountryCode}}">{{ country.Country }}</option>
+              </select>
+              <p *ngIf="getcustomerFormRef.customerCountry.errors?.required && getcustomerFormRef.customerCountry.touched" class="text-danger">Country field is required</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerState">State
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <select formControlName="customerState" id="customerState" [ngClass]="{'form-control': true, 
+                'is-invalid':!getcustomerFormRef.customerState.valid && getcustomerFormRef.customerState.touched,
+                'is-valid': getcustomerFormRef.customerState.valid}"
+                [(ngModel)]="customerModel.State" (change)="findCity()">
+                <option selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let state of stateDropdown" value="{{state.Region_Code}}">{{state.State}}</option>
+              </select>
+              <p *ngIf="getcustomerFormRef.customerState.errors?.required && getcustomerFormRef.customerState.touched" class="text-danger">State field is required</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerDistrict">District
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <select formControlName="customerDistrict" id="customerDistrict" [ngClass]="{'form-control': true, 
+                'is-invalid':!getcustomerFormRef.customerDistrict.valid && getcustomerFormRef.customerDistrict.touched,
+                'is-valid': getcustomerFormRef.customerDistrict.valid}"
+                [(ngModel)]="customerModel.District">
+                <option selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let district of districtDropdown" value="{{district.CityCode}}">{{district.Name}}</option>
+              </select>
+              <p *ngIf="getcustomerFormRef.customerDistrict.errors?.required && getcustomerFormRef.customerDistrict.touched" class="text-danger">District field is required</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerName">Pincode
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="customerPincode" type="text" class="form-control" 
+              [(ngModel)]="customerModel.PinCode" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="customerName">Address
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="customerAddress" type="text" id="customerName" [ngClass]="{'form-control': true, 
+                  'is-invalid':!getcustomerFormRef.customerAddress.valid && getcustomerFormRef.customerAddress.touched,
+                  'is-valid': getcustomerFormRef.customerAddress.valid}" 
+                  [(ngModel)]="customerModel.Address" />
+              <p *ngIf="getcustomerFormRef.customerAddress.errors?.required && getcustomerFormRef.customerAddress.touched" class="text-danger">Location field is required</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerName">Mobile No
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="customerMobile" type="text" id="customerName" class="form-control" 
+              [(ngModel)]="customerModel.Mobile" />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerName">Contact
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <input formControlName="customerContact" type="text" id="customerName" class="form-control"
+              [(ngModel)]="customerModel.Contact" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="customerName">Is Active
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <select formControlName="customerIsActive" class="form-control" 
+              [(ngModel)]="customerModel.IsActive">
+                <option selected [ngValue]=undefined>Select</option>
+                <option value=true>Yes</option>
+                <option value=false>No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="urlRequest.pageStatus != 'view'" class="form-submit-container text-right">
+          <input type="submit" *ngIf="urlRequest.pageStatus == 'create'" [disabled]="!customerForm.valid" class="btn btn-primary" (click)="submit()"
+            value="Submit" />
+          <input type="submit" *ngIf="urlRequest.pageStatus == 'edit'" [disabled]="!customerForm.valid" class="btn btn-primary" (click)="update()"
+            value="Update" />
+          <input type="reset" class="btn btn-primary" value="Clear" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

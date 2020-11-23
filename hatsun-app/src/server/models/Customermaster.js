@@ -6,7 +6,7 @@ const schema = new Schema({
     {
         type: String
     },
-    CoustomerName:
+    CustomerName:
     {
         type: String
     },
@@ -16,15 +16,15 @@ const schema = new Schema({
     },
     Country:
     {
-        type: Number
+        type: String
     },
     State:
     {
-        type: Number
+        type: String
     },
     District:
     {
-        type: Number
+        type: String
     },
     PinCode:
     {
