@@ -50,24 +50,7 @@ const showAccessModule = (req, res, next) => {
 // show MenuSetup
 const showMenuSetup = (req, res, next) => {
     MenuMaster.MenuSetupMaster.aggregate([
-        {$lookup: {
-            from: "MenuGroupMaster",
-            localField: "GroupId",
-            foreignField: "Description",
-            as: "MenuGroupArray"
-        }},
-        {$lookup: {
-            from: "MenuModule",
-            localField: "ParentId",
-            foreignField: "Description",
-            as: "MenuModuleArray"
-        }},
-        {$lookup: {
-            from: "AccessModuleMaster",
-            localField: "AccessModuleId",
-            foreignField: "HelpNotes",
-            as: "AccessModuleArray"
-        }}
+        { $match : { "MenuModule.AccessModule.Roles" : "5faa8d19d02f7f350cf7ef95" } }
     ])
         .then(response => {
             res.json({
@@ -103,8 +86,8 @@ const updateMenuSetup = (req, res, next) => {
     for(let i=0; i<data.length; i++) {
         MenuMaster.MenuSetupUpdate.update(
             {},
-            { $set: { "MenuModule.$[].AccessModule.$[exp].Roles": ["5464","6445"] } },
-            { arrayFilters: [  { "exp.AccessModuleName": "Source Location" } ], multi: true}
+            { $set: { "MenuModule.$[].AccessModule.$[exp].Roles": data[i].Roles } },
+            { arrayFilters: [  { "exp.AccessModuleName": data[i].AccessModuleName } ], multi: true}
          )
     }
 }

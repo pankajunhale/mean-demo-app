@@ -162,12 +162,8 @@ export class SidebarMenuComponent implements OnInit {
 
   ngOnInit() {
     this.roleService.findMenuSetup().subscribe((response: any) => {
-      this.MenuSetupList = response.response;
       debugger;
-      for(let i = 0; i<this.MenuSetupList.length; i++) {
-        console.log("Menu Setup : " + this.MenuSetupList[0].DealerID)
-      }
-      
+      this.MenuSetupList = response.response;
     })
   }
 
