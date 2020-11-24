@@ -22,7 +22,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Menu Main Module</label>
-                        <select formControlName="MenuGroup" [(ngModel)]="MenusGroup" name="" id="" class="form-control">
+                        <select (change)="resetAccessModule()" formControlName="MenuGroup" [(ngModel)]="MenusGroup" name="" id="" class="form-control">
                             <option selected [ngValue]=undefined>Select</option>
                             <option *ngFor="let menuGroup of MenuGroupDropdown" [ngValue]="menuGroup">{{menuGroup.GroupName}}</option>
                         </select>
@@ -31,7 +31,7 @@
                 <div *ngIf="MenuSetup != null" class="col-md-3">
                     <div class="form-group">
                         <label for="">Sub Module</label>
-                        <select formControlName="MenuModule" [(ngModel)]="MenuModule" name="" id="sub-module" class="form-control">
+                        <select (change)="resetAccessModule()" formControlName="MenuModule" [(ngModel)]="MenuModule" name="" id="sub-module" class="form-control">
                             <option selected [ngValue]=undefined>Select</option>
                             <option *ngFor="let menuModule of MenusGroup.MenuModule" [ngValue]="menuModule" >{{menuModule.MenuModuleName}}</option>
                         </select>
@@ -53,7 +53,7 @@
                 <tbody>
                     <tr *ngFor = "let accessModule of MenuModule.AccessModule" >
                         <td>{{accessModule.AccessModuleName}}</td>
-                        <td><input (click)="PageAccess(accessModule)" type="checkbox"></td>
+                        <td><input [checked]="accessModule.Roles.includes(this.role)" (click)="PageAccess(accessModule)" type="checkbox"></td>
                     </tr>
                 </tbody>
             </table>

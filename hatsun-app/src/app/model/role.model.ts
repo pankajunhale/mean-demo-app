@@ -23,7 +23,11 @@ export class MenuSetup {
     GroupId: String;
     GroupName: String;
     MenuModuleName: String;
+    AccessMenus: any;
+}
+
+export class AccessMenu {
     AccessModuleName: String;
-    Roles : String;
+    Roles : String[];
 }
 

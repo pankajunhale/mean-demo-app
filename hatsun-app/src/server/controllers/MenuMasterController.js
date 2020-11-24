@@ -73,7 +73,6 @@ const showMenuSetup = (req, res, next) => {
             res.json({
                 response
             })
-            console.log(response)
         })
         .catch(error => {
             res.json({
@@ -97,6 +96,19 @@ const showMenuSetupList = (req, res, next) => {
         })
 }
 
+// update MenuSetup
+const updateMenuSetup = (req, res, next) => {
+    let data = req.body.menuSetupData.AccessMenus;
+    console.log("request bro : - " + data[0].Roles);
+    for(let i=0; i<data.length; i++) {
+        MenuMaster.MenuSetupUpdate.update(
+            {},
+            { $set: { "MenuModule.$[].AccessModule.$[exp].Roles": ["5464","6445"] } },
+            { arrayFilters: [  { "exp.AccessModuleName": "Source Location" } ], multi: true}
+         )
+    }
+}
+
 module.exports = {
-    index, show, showAccessModule, showMenuSetup, showMenuSetupList
+    index, show, showAccessModule, showMenuSetup, showMenuSetupList, updateMenuSetup
 }

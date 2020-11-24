@@ -46,4 +46,8 @@ export class RoleService extends BaseService {
     findMenuSetupList() {
         return this.service.get('api/menumaster/showMenuSetupList');
     }
+
+    updateMenuSetup(menuSetupData) {
+        return this.service.post('api/menumaster/updateMenuSetup', { menuSetupData : menuSetupData });
+    }
 }
