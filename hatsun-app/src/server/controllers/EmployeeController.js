@@ -165,9 +165,11 @@ const destroy = (req,res,next) => {
 }
 
 function authenticate(req, res)  {
-
+    var resultData;
       Employee.findOne(
         { UserEmail: req.body.UserEmail.toLowerCase() }, (err, result) => {
+            console.log(result)
+            resultData = result;
             if (err) {
                 res.status(500).send(err);
                 return;
@@ -187,7 +189,7 @@ function authenticate(req, res)  {
                 match.then(
                     result => {
                         if (result) {
-                            res.status(200).send({message: "Login Successful"})
+                            res.status(200).send({message: "Login Successful",resultData:resultData})
                         }
                         if (!result) {
                             res.status(401).send({message:"Invalid Credentials"})

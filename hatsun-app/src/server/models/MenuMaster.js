@@ -148,14 +148,65 @@ const AccessModuleSchema = new Schema({
 
 const MenuSetupSchema = new Schema({})
 const MenuSetupListSchema = new Schema({})
-const MenuSetupUpdateSchema = new Schema({})
+const AccessModule = new Schema({
+    AccessModuleName:
+    {
+        type: String
+    },
+    PageUrl:
+    {
+        type: String
+    },
+    ChieldId:
+    {
+        type: String
+    },
+    Roles:
+    {
+        type: ["string", null]
+    },
+})
+const MenuModule = new Schema({
+    MenuModuleName:
+    {
+        type: String
+    },
+    IsActive:
+    {
+        type: String
+    },
+    ParentId:
+    {
+        type: String
+    },
+    AccessModule: {
+        type: AccessModule
+    }
+})
+const MenuSetupUpdateSchema = new Schema({
+    GroupName:
+    {
+        type: String
+    },
+    IsActive:
+    {
+        type: String
+    },
+    GroupId:
+    {
+        type: String
+    },
+    MenuModule: {
+        type: MenuModule
+    }
+})
 
 const MenuMaster = mongoose.model('MenuMaster', MenuGroupMasterSchema, "MenuGroupMaster")
 const MenuModuleMaster = mongoose.model('MenuModuleMaster', MenuModuleSchema, "MenuModule")
 const AccessModuleMaster = mongoose.model('AccessModuleMaster', AccessModuleSchema, "AccessModuleMaster")
 const MenuSetupMaster = mongoose.model('MenuSetupMaster',MenuSetupSchema, "MenuSetup")
 const MenuSetupList = mongoose.model('MenuSetupList',MenuSetupListSchema, "MenuSetup")
-const MenuSetupUpdate = mongoose.model('MenuSetupUpdate',MenuSetupUpdateSchema, "MenuSetup")
+const MenuSetupUpdate = mongoose.model('MenuSetup',MenuSetupUpdateSchema, "MenuSetup")
 module.exports = {
     MenuMaster: MenuMaster,
     MenuModuleMaster: MenuModuleMaster,

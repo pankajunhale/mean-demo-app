@@ -80,15 +80,23 @@ const showMenuSetupList = (req, res, next) => {
 }
 
 // update MenuSetup
-const updateMenuSetup = (req, res, next) => {
+const updateMenuSetup = (req, res) => {
     let data = req.body.menuSetupData.AccessMenus;
-    console.log("request bro : - " + data[0].Roles);
     for(let i=0; i<data.length; i++) {
         MenuMaster.MenuSetupUpdate.update(
             {},
             { $set: { "MenuModule.$[].AccessModule.$[exp].Roles": data[i].Roles } },
             { arrayFilters: [  { "exp.AccessModuleName": data[i].AccessModuleName } ], multi: true}
-         )
+         ).then(response => {
+            res.json({
+                message: 'updated successfully!'
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'An ERROR occoured!'
+            })
+        })
     }
 }
 

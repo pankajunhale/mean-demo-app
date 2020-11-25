@@ -13,7 +13,7 @@
                     <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.MenuModuleName}}</a>
                     <ul class="level-3" *ngIf = "AnotherMenuSelectionId == level2.ParentId">
                         <li *ngFor = "let level3 of level2.AccessModule">
-                            <a *ngIf="level3.Roles.includes('5faa8d19d02f7f350cf7ef95')" class="menu-link" [routerLink]="[level3.PageUrl]">{{level3.AccessModuleName}}</a>
+                            <a *ngIf="level3.Roles.includes('5faa8d19d02f7f350cf7ef95')" [routerLink]="[level3.PageUrl]">{{level3.AccessModuleName}}</a>
                         </li>
                     </ul>
                 </li>

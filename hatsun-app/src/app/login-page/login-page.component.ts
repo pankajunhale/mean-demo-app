@@ -37,7 +37,7 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
   auth(){
     this.userService.authenticate(this.loginForm.get('userEmail').value, this.loginForm.get('userPassword').value).subscribe((response) =>{
       this.commonService.setLocalStorageItem('isLoggedIn', '1');
-      // this.router.navigate(['/userList']); //hack
+      debugger;
       window.location.href = '/userList'
     },()=>{
       alert('Invalid credentials')
