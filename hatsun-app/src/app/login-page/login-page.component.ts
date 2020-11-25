@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
 import { UserService } from '../services/user.service';
 import { Router } from '../../../node_modules/@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonService } from '../services/common.service';
-//import { win32 } from 'path';
 import { BaseComponent } from '../model/base.component';
 
 @Component({
@@ -17,6 +15,15 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
   loginForm = new FormGroup({
     userEmail: new FormControl(null, [Validators.required]),
     userPassword: new FormControl(null, [Validators.required]),
+  });
+
+  emailForm = new FormGroup({
+    userEmail: new FormControl(null, [Validators.required])
+  });
+
+  resetForm = new FormGroup({
+    otp: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
   });
   constructor(private router: Router,private userService: UserService, private commonService: CommonService) { 
     super();
@@ -49,10 +56,14 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
   }
 
   sendOTP() {
-    this.PageStatus = "resetPassPage";
+    this.userService.generateOTP(this.emailForm.get('userEmail').value).subscribe(()=>{
+      this.PageStatus = "resetPassPage";
+    })
   }
 
   resetPassword() {
-    this.PageStatus = "loginPage";
+    this.userService.resetPassword(this.resetForm.get('otp').value,this.resetForm.get('password').value).subscribe(()=>{
+      this.PageStatus = "loginPage"; 
+    })
   }
 }

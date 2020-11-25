@@ -9,7 +9,7 @@ import { CustomerService } from '../services/customer.service';
 export class CustomerMasterListComponent implements OnInit {
   customerDataList: any;
   dtOptions: DataTables.Settings = {};
-  constructor(private customerService: CustomerService) { 
+  constructor(private customerService: CustomerService) {
     this.dtOptions = {
       pagingType: 'full_numbers',
       processing: true,

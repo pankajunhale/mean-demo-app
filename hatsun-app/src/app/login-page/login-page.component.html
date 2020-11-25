@@ -46,11 +46,11 @@
 <div class="container-fluid login-page" *ngIf="PageStatus == 'emailPage'">
     <div class="login-container">
         <h1 class="login-title vertical-spacing">RESET PASSWORD</h1>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="emailForm">
             <div>
                 <div class="form-group vertical-spacing">
                     <label for="username">User Email:</label>
-                    <input type="text" id="" [ngClass]="{'form-control': true}" />
+                    <input formControlName="userEmail" type="text" id="" [ngClass]="{'form-control': true}" />
                 </div>
                 <button type="submit" (click)="sendOTP()" class="btn btn-primary">Send OTP</button>
             </div>
@@ -61,15 +61,15 @@
 <div class="container-fluid login-page" *ngIf="PageStatus == 'resetPassPage'">
     <div class="login-container">
         <h1 class="login-title vertical-spacing">RESET PASSWORD</h1>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="resetForm">
             <div>
                 <div class="form-group vertical-spacing">
                     <label for="username">Enter OTP:</label>
-                    <input type="text" id="" [ngClass]="{'form-control': true}" />
+                    <input formControlName="otp" type="text" id="" [ngClass]="{'form-control': true}" />
                 </div>
                 <div class="form-group vertical-spacing">
                     <label for="username">Set Password:</label>
-                    <input type="text" id="" [ngClass]="{'form-control': true}" />
+                    <input formControlName="password" type="text" id="" [ngClass]="{'form-control': true}" />
                 </div>
                 <div class="form-group vertical-spacing">
                     <label for="username">Re-enter Password:</label>

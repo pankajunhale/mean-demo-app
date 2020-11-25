@@ -78,7 +78,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor = "let customerData of customerDataList.response">
+                    <tr *ngFor="let customerData of customerDataList.response">
                         <td>{{customerData._id}}</td>
                         <td>{{customerData.CustomerName}}</td>
                         <td>{{customerData.Address}}</td>
@@ -88,8 +88,10 @@
                         <td>{{customerData.State.State}}</td>
                         <td>{{customerData.City.Name}}</td>
                         <td>
-                            <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'edit']"><i class="fa fa-edit"></i></button>
-                            <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'view']"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'edit']"><i
+                                    class="fa fa-edit"></i></button>
+                            <button class="btn-primary" [routerLink]="['/createCustomer',customerData._id, 'view']"><i
+                                    class="fa fa-eye" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                 </tbody>

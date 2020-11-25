@@ -1,7 +1,6 @@
 const Employee = require('../models/Employee');
 const bcrypt = require('bcrypt');
-const { db } = require('../models/Employee');
-const { request } = require('http');
+
 
 // list of employee
 const index  = (req,res,next) => {
@@ -48,6 +47,7 @@ const index  = (req,res,next) => {
     })
 }
 
+
 // show single employee
 const show = (req,res,next) => {
     debugger;
@@ -87,7 +87,7 @@ const store = (req,res,next) => {
     RoleID: req.body.RoleID,
     isActive: req.body.isActive,
     SecurityCode: req.body.SecurityCode,
-    PasswordResetedOn: req.body.PasswordResetedOn,
+    PasswordResetedOn: Date.now(),
     TokenNo: req.body.TokenNo
     });
     try {
@@ -204,7 +204,7 @@ async function compareAsync(param1, param2) {
     const match = await bcrypt.compare(param1, param2);
     return match;
 }
-      
+
 
 
 module.exports = {

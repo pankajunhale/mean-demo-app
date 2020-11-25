@@ -32,4 +32,11 @@ export class UserService extends BaseService {
     authenticate(userEmail: string,Password:string ): Observable<any>{
         return this.service.post('api/employee/login',{UserEmail:userEmail,Password:Password})
     }
+    generateOTP(userEmail:String): Observable<any>{
+        debugger;
+        return this.service.post('api/employee/forgotPassword',{UserEmail:userEmail})
+    }
+    resetPassword(Otp : String,Password:String) : Observable<any>{
+        return this.service.post('api/employee/reset', { otp: Otp,Password : Password})
+    } 
 }
