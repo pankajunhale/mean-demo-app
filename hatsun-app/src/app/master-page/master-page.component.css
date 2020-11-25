@@ -24,7 +24,10 @@ main {
     height: 100vh;
     padding: 10px 10px;
     background: #fff;
-    padding-left: 20%;
+  }
+
+  .content-padding {
+      padding-left: 20%;
   }
 
 #DataTables_Table_0_wrapper {

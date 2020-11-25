@@ -3,12 +3,15 @@ import { Router } from '@angular/router';
 import { SampleModel } from '../model/sample.model';
 import { BaseService } from './base.service';
 import { HttpService } from './http.service';
+import {Observable,Subject} from 'rxjs'
 
 @Injectable({
     providedIn: 'root'
 })
 export class CommonService extends BaseService {
+    private showMenu = true;
     private IS_LOGGED_IN = 'isLoggedIn';
+    private subject = new Subject<any>();
     constructor(private service: HttpService, private router: Router) {
         super();
     }
@@ -60,6 +63,12 @@ export class CommonService extends BaseService {
         if(isPageRefresh){
             window.location.href = path;
         }
+    }
+    public onButtonClick(): void{
+        this.subject.next();
+    }
+    public getClickEvent():Observable<any>{
+        return this.subject.asObservable();
     }
 
 }

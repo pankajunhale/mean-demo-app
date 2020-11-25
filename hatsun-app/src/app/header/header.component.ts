@@ -13,6 +13,10 @@ export class HeaderComponent implements OnInit {
   onLogout(){
     this.commonService.loggedOut();
   }
+  seeMenu = false;
+  toggleMenu(){
+    this.commonService.onButtonClick()
+    }
 
   ngOnInit() {
   }

@@ -157,8 +157,7 @@ export class SidebarMenuComponent implements OnInit {
     }
   ]
   constructor(private roleService: RoleService) {
-
-   }
+    }
 
   ngOnInit() {
     this.roleService.findMenuSetup().subscribe((response: any) => {
@@ -170,6 +169,7 @@ export class SidebarMenuComponent implements OnInit {
       
     })
   }
+
 
   level1Click(leve1Menu) {
     debugger;

@@ -1,23 +1,26 @@
-<aside class="sidebar transitionAll">
-    <div class="user-container">
-        <div class="user-details">
-            <p>Copia Consultancy</p>
-            <p>Account Owner</p>
+<div >
+    <aside class="sidebar transitionAll">
+        <div class="user-container">
+            <div class="user-details">
+                <p>Copia Consultancy</p>
+                <p>Account Owner</p>
+            </div>
         </div>
-    </div>
-    <ul class="level-1">
-        <li *ngFor = "let level1 of MenuList">
-            <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupMenu}}</a>
-            <ul class="level-2" *ngIf = "MenuSelectionId == level1.GroupId">
-                <li *ngFor = "let level2 of level1.ParentMenu">
-                    <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.ParentMenu}}</a>
-                    <ul class="level-3" *ngIf = "AnotherMenuSelectionId == level2.ParentId">
-                        <li *ngFor = "let level3 of level2.ChieldMenu">
-                            <a class="menu-link" [routerLink]="[level3.link]">{{level3.ChieldMenu}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</aside>
+        <ul class="level-1">
+            <li *ngFor="let level1 of MenuList">
+                <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupMenu}}</a>
+                <ul class="level-2" *ngIf="MenuSelectionId == level1.GroupId">
+                    <li *ngFor="let level2 of level1.ParentMenu">
+                        <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.ParentMenu}}</a>
+                        <ul class="level-3" *ngIf="AnotherMenuSelectionId == level2.ParentId">
+                            <li *ngFor="let level3 of level2.ChieldMenu">
+                                <a class="menu-link" [routerLink]="[level3.link]">{{level3.ChieldMenu}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+
+</div>
