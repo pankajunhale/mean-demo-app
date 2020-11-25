@@ -12,6 +12,7 @@ import { BaseComponent } from '../model/base.component';
 })
 export class LoginPageComponent extends BaseComponent implements OnInit {
   PageStatus: string = "loginPage"
+  SharedVariable: string = "shared";
   loginForm = new FormGroup({
     userEmail: new FormControl(null, [Validators.required]),
     userPassword: new FormControl(null, [Validators.required]),
@@ -37,6 +38,7 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
   auth(){
     this.userService.authenticate(this.loginForm.get('userEmail').value, this.loginForm.get('userPassword').value).subscribe((response) =>{
       this.commonService.setLocalStorageItem('isLoggedIn', '1');
+      this.commonService.setLocalStorageItem('roleId', response.resultData.RoleID);
       debugger;
       window.location.href = '/userList'
     },()=>{

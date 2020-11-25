@@ -50,7 +50,7 @@ const showAccessModule = (req, res, next) => {
 // show MenuSetup
 const showMenuSetup = (req, res, next) => {
     MenuMaster.MenuSetupMaster.aggregate([
-        { $match : { "MenuModule.AccessModule.Roles" : "5faa8d19d02f7f350cf7ef95" } }
+        { $match : { "MenuModule.AccessModule.Roles" : req.body.roleID } }
     ])
         .then(response => {
             res.json({

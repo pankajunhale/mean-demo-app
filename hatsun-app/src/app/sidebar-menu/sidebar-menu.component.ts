@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { RoleService } from '../services/role.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -10,17 +11,21 @@ export class SidebarMenuComponent implements OnInit {
   MenuSelectionId: string;
   AnotherMenuSelectionId: string;
   MenuSetupList: any;
-  
-  constructor(private roleService: RoleService) {
+  roleID: string;
 
-   }
+  constructor(private roleService: RoleService, private commonService: CommonService) {
+
+  }
 
   ngOnInit() {
-    this.roleService.findMenuSetup().subscribe((response: any) => {
+    this.roleID = this.commonService.getLocalStorageItem("roleId");
+    this.roleService.findMenuSetup(this.roleID).subscribe((response: any) => {
       debugger;
       this.MenuSetupList = response.response;
+      console.log("Role Id - " + this.roleID);
     })
   }
+
 
   level1Click(leve1Menu) {
     debugger;
@@ -33,7 +38,7 @@ export class SidebarMenuComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if(!$(event.target).hasClass("menu-link")) {
+    if (!$(event.target).hasClass("menu-link")) {
       this.MenuSelectionId = "0";
       this.AnotherMenuSelectionId = "0";
     }

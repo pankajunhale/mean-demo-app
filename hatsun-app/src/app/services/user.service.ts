@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class UserService extends BaseService {
+    userResponse: any = "default value";
     constructor(private service: HttpService) {
         super();
     }
@@ -30,8 +31,10 @@ export class UserService extends BaseService {
     }
 
     authenticate(userEmail: string,Password:string ): Observable<any>{
-        return this.service.post('api/employee/login',{UserEmail:userEmail,Password:Password})
+        this.userResponse = this.service.post('api/employee/login',{UserEmail:userEmail,Password:Password})
+        return this.userResponse
     }
+
     generateOTP(userEmail:String): Observable<any>{
         debugger;
         return this.service.post('api/employee/forgotPassword',{UserEmail:userEmail})

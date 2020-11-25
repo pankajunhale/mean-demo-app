@@ -8,11 +8,11 @@
 
         <main>
             <ng-container *ngIf="isUserLoggedIn">
-                <nav class="sidebar-navigation">
-                    <app-sidebar-menu></app-sidebar-menu>
+                <nav class="sidebar-navigation" *ngIf="showMenu">
+                    <app-sidebar-menu ></app-sidebar-menu>
                 </nav>
             </ng-container>            
-            <section class="content">
+            <section [ngClass]="{'content': true, 'content-padding': showMenu == true}">
                 <router-outlet></router-outlet>
             </section>
         </main>

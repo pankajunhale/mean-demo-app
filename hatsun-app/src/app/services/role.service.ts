@@ -39,8 +39,8 @@ export class RoleService extends BaseService {
         return this.service.post('api/menumaster/showAcessModule', { MenuModuleId : MenuModuleId});
     }
 
-    findMenuSetup(){
-        return this.service.get('api/menumaster/showMenuSetup');
+    findMenuSetup(roleID){
+        return this.service.post('api/menumaster/showMenuSetup', { roleID: roleID });
     }
 
     findMenuSetupList() {

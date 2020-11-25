@@ -1,23 +1,24 @@
-<aside class="sidebar transitionAll">
-    <div class="user-container">
-        <div class="user-details">
-            <p>Copia Consultancy</p>
-            <p>Account Owner</p>
+<div>
+    <aside class="sidebar transitionAll">
+        <div class="user-container">
+            <div class="user-details">
+                <p>Copia Consultancy</p>
+                <p>Account Owner</p>
+            </div>
         </div>
-    </div>
-    <ul class="level-1">
-        <li *ngFor = "let level1 of MenuSetupList">
-            <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupName}}</a>
-            <ul class="level-2" *ngIf = "MenuSelectionId == level1.GroupId">
-                <li *ngFor = "let level2 of level1.MenuModule">
-                    <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.MenuModuleName}}</a>
-                    <ul class="level-3" *ngIf = "AnotherMenuSelectionId == level2.ParentId">
-                        <li *ngFor = "let level3 of level2.AccessModule">
-                            <a *ngIf="level3.Roles.includes('5faa8d19d02f7f350cf7ef95')" [routerLink]="[level3.PageUrl]">{{level3.AccessModuleName}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</aside>
+        <ul class="level-1">
+            <li *ngFor="let level1 of MenuSetupList">
+                <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupName}}</a>
+                <ul class="level-2" *ngIf="MenuSelectionId == level1.GroupId">
+                    <li *ngFor="let level2 of level1.MenuModule">
+                        <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.MenuModuleName}}</a>
+                        <ul class="level-3" *ngIf="AnotherMenuSelectionId == level2.ParentId">
+                            <li *ngFor="let level3 of level2.AccessModule">
+                                <a *ngIf="level3.Roles.includes('5faa8d19d02f7f350cf7ef95')" [routerLink]="[level3.PageUrl]">{{level3.AccessModuleName}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
