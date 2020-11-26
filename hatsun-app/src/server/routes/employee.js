@@ -20,13 +20,6 @@ router.post('/login',controller.authenticate)
 
 router.post('/forgotPassword', function (req, res, next) {
     async.waterfall([
-        // function (done) {
-        //     crypto.randomBytes(3, function (err, buf) {
-        //         token = parseInt(buf.toString('hex'), 16).toString().substr(0, 6);
-        //         console.log(token)            
-        //         done(err, token);
-        //     });
-        // },
         function ( done) {
             Employee.findOne({ UserEmail: req.body.UserEmail }, function (err, user) {
                 if (!user || err ) {
@@ -36,10 +29,8 @@ router.post('/forgotPassword', function (req, res, next) {
                 else{
                     crypto.randomBytes(3, function (err, buf) {
                         token = parseInt(buf.toString('hex'), 16).toString().substr(0, 6);
-                        console.log(token);
                         user.resetPasswordToken = token;
                         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-                        console.log(user, user.UserEmail)
                         user.save(function (err) {
                             done(err, token, user);
                             //done(err, token);
