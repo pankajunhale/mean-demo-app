@@ -67,10 +67,6 @@ const show = (req,res,next) => {
 
 // storing to database
 const store = (req,res,next) => {
-    debugger;
-    console.log('store');
-    
-
     let employee = new Employee({
     UserID: req.body.UserID,
     CustomerName: req.body.CustomerName,
@@ -92,7 +88,6 @@ const store = (req,res,next) => {
     });
     try {
         bcrypt.genSalt(10, (err, salt) => {
-            console.log('genSalt');
             bcrypt.hash(req.body.Password, salt, (err, hash) => {
                 employee.Password = hash;
                 employee.saltSecret = salt;
@@ -168,7 +163,6 @@ function authenticate(req, res)  {
     var resultData;
       Employee.findOne(
         { UserEmail: req.body.UserEmail.toLowerCase() }, (err, result) => {
-            console.log(result)
             resultData = result;
             if (err) {
                 res.status(500).send(err);
