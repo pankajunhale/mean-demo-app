@@ -83,9 +83,9 @@ const schema = new Schema({
     // expireToken:  Date
     resetPasswordToken: 
     {
-        type :String, default:"null"},
+        type :String, },
     resetPasswordExpires: {
-        type :Date, default :"null"}
+        type :Date, }
    
 
 })
