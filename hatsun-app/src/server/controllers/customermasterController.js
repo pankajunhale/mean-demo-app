@@ -69,7 +69,6 @@ const store = (req, res, next) => {
         WhenEntered: req.body.WhenEntered,
         WhenModified: req.body.WhenModified,
         IsActive: req.body.IsActive
-
     })
     customermaster.save()
         .then(response => {

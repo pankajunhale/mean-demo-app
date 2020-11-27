@@ -8,13 +8,13 @@
         </div>
         <ul class="level-1">
             <li *ngFor="let level1 of MenuSetupList">
-                <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupName}}</a>
+                <a class="menu-link"(mouseover)="level1Click(level1.GroupId)" (click)="level1Click(level1.GroupId)">{{level1.GroupName}}</a>
                 <ul class="level-2" *ngIf="MenuSelectionId == level1.GroupId">
                     <li *ngFor="let level2 of level1.MenuModule">
-                        <a class="menu-link" (click)="level2Click(level2.ParentId)">{{level2.MenuModuleName}}</a>
+                        <a class="menu-link" (mouseover)="level2Click(level2.ParentId)" (click)="level2Click(level2.ParentId)">{{level2.MenuModuleName}}</a>
                         <ul class="level-3" *ngIf="AnotherMenuSelectionId == level2.ParentId">
                             <li *ngFor="let level3 of level2.AccessModule">
-                                <a *ngIf="level3.Roles.includes('5faa8d19d02f7f350cf7ef95')" [routerLink]="[level3.PageUrl]">{{level3.AccessModuleName}}</a>
+                                <a *ngIf="level3.Roles.includes(roleID)" [routerLink]="[level3.PageUrl]">{{level3.AccessModuleName}}</a>
                             </li>
                         </ul>
                     </li>

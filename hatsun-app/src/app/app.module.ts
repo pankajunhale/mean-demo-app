@@ -19,6 +19,11 @@ import { CustomerMasterListComponent } from './customer-master-list/customer-mas
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
 import { CustomerService } from './services/customer.service';
 import { CommonService } from './services/common.service';
+import { FileLocationComponent } from './file-location/file-location.component';
+import { ProcessingListComponent } from './processing-list/processing-list.component';
+import { DefineFileDetailsComponent } from './define-file-details/define-file-details.component';
+import { FileMappingComponent } from './file-mapping/file-mapping.component';
+import { CreateInterfaceComponent } from './create-interface/create-interface.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { CommonService } from './services/common.service';
     RoleMasterComponent,
     RoleAccessRelationComponent,
     CustomerMasterListComponent,
-    CreateCustomerComponent
+    CreateCustomerComponent,
+    FileLocationComponent,
+    ProcessingListComponent,
+    DefineFileDetailsComponent,
+    FileMappingComponent,
+    CreateInterfaceComponent
   ],
   imports: [
     BrowserModule,

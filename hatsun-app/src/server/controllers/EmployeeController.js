@@ -69,8 +69,6 @@ const show = (req,res,next) => {
 const store = (req,res,next) => {
     debugger;
     console.log('store');
-    
-
     let employee = new Employee({
     UserID: req.body.UserID,
     CustomerName: req.body.CustomerName,
@@ -104,8 +102,6 @@ const store = (req,res,next) => {
     catch(error) {
         res.status(500).send({ error: "Error in processing your request:" + error.message });
     }
-    
-    
 }
 
 // update an empoyee

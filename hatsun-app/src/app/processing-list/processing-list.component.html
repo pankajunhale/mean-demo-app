@@ -1,0 +1,75 @@
+<div class="container-fluid ">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-title">Processing List</h2>
+                </div>
+            </div>
+        </div>
+        <div class="section-container">
+            <h3 class="section-title">Selection Filter</h3>
+            <div class="section-data-container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Ran Time</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Ran by</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Processing Status</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <div class="form-group filter-btn-section">
+                            <input type="submit" class="btn btn-primary" (click)="search()" value="Search" />
+                            <input type="reset" class="btn btn-primary" value="Clear" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-container">
+            <h3 class="section-title">List</h3>
+            <div class="section-data-container">
+                <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>Ran Time</th>
+                            <th>Ran By</th>
+                            <th>Processing Status</th>
+                            <th>Errors</th>
+                            <th>ACK1</th>
+                            <th>ACK2</th>
+                            <th>ACK3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <input type="submit" class="btn-danger" value="Error" />
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
