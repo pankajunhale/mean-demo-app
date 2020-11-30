@@ -15,47 +15,63 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">User Name</label>
-                        <input type="text" class="form-control" />
+                        <label for="user-name">User Name</label>
+                        <div class="ng-autocomplete" style="width: 100%">
+                            <ng-autocomplete [data]="userAutocomplete" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+                                 [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.UserName"></a>
+                            </ng-template>
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">Country</label>
-                        <select name="" id="" class="form-control">
+                        <label for="country">Country</label>
+                        <select name="" id="country" class="form-control" (change)="findState()">
                             <option value="">Select</option>
+                            <option *ngFor="let country of countryDropdown" value="{{country.CountryCode}}">{{ country.Country }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">State</label>
-                        <select name="" id="" class="form-control">
+                        <label for="state">State</label>
+                        <select name="" id="state" class="form-control" (change)="findCity()">
                             <option value="">Select</option>
+                            <option *ngFor="let state of stateDropdown" value="{{state.Region_Code}}">{{state.State}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">District</label>
-                        <select name="" id="" class="form-control">
+                        <label for="district">District</label>
+                        <select name="" id="district" class="form-control">
                             <option value="">Select</option>
+                            <option *ngFor="let district of districtDropdown" value="{{district.CityCode}}">{{district.Name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">Status</label>
-                        <select name="" id="" class="form-control">
+                        <label for="status">Status</label>
+                        <select name="" id="status" class="form-control">
                             <option value="">Select</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">Role</label>
-                        <select name="" id="" class="form-control">
+                        <label for="role">Role</label>
+                        <select name="" id="role" class="form-control">
                             <option value="">Select</option>
+                            <option *ngFor="let role of roleDropdown" value="{{role._id}}">{{role.RoleName}}</option>
                         </select>
                     </div>
                 </div>
@@ -101,8 +117,12 @@
                         <td>{{userDetails.City.Name}}</td>
                         <td>{{userDetails.Location}}</td>
                         <td>
-                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'edit']"><i class="fa fa-edit"></i></button>
-                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'view']"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'edit']">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn-primary" [routerLink]="['/createUser',userDetails._id, 'view']">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>

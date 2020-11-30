@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-const crypto = require('crypto');
 const Schema = mongoose.Schema
 
 const schema = new Schema({
@@ -78,14 +76,11 @@ const schema = new Schema({
         type: String
     },
     saltSecret: String,
-    
-    // resetToken:String,
-    // expireToken:  Date
     resetPasswordToken: 
     {
-        type :String, default:"null"},
+        type :String, },
     resetPasswordExpires: {
-        type :Date, default :"null"}
+        type :Date, }
    
 
 })

@@ -24,6 +24,7 @@ import { ProcessingListComponent } from './processing-list/processing-list.compo
 import { DefineFileDetailsComponent } from './define-file-details/define-file-details.component';
 import { FileMappingComponent } from './file-mapping/file-mapping.component';
 import { CreateInterfaceComponent } from './create-interface/create-interface.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CreateInterfaceComponent } from './create-interface/create-interface.co
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AutocompleteLibModule
   ],
   providers: [CommonService,UserService, CustomerService],
   bootstrap: [AppComponent]

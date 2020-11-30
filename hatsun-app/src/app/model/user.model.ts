@@ -23,3 +23,16 @@ export class UserModel {
     }
 }
 
+export class UserSelectionFilterModel {
+    UserID: String;
+    Country: String;
+    State: String;
+    Distrcit: String;
+    IsActive: String;
+    RoleID: String;
+
+    constructor() {
+
+    }
+}
+
