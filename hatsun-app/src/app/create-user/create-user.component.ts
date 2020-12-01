@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute , Router } from '@angular/router';
 import { RoleService } from '../services/role.service';
 import { GeographyService } from '../services/geography.service';
+import{ CustomerService } from '../services/customer.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Location } from '@angular/common';
 
@@ -22,6 +23,7 @@ export class CreateUserComponent implements OnInit {
   roleDropdown: any;
   countryDropdown: any;
   stateDropdown: any;
+  customerDropdown : any;
   districtDropdown: any;
   private emailRegEx = '^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$'
   userForm = new FormGroup({
@@ -39,7 +41,8 @@ export class CreateUserComponent implements OnInit {
   constructor(private userService: UserService,
     private route : Router,
     private location: Location,  
-    private router: ActivatedRoute, 
+    private router: ActivatedRoute,
+    private customerservice : CustomerService,
     private roleService: RoleService,
     private geographyService: GeographyService) {
     this.userModel = new UserModel();
@@ -68,6 +71,9 @@ export class CreateUserComponent implements OnInit {
 
     this.geographyService.findCountry().subscribe((response: any) => {
       this.countryDropdown = response.response;
+    })
+    this.customerservice.findAllCustomers().subscribe((response :any)=>{
+      this.customerDropdown = response.response;
     })
   }
 
@@ -102,5 +108,6 @@ export class CreateUserComponent implements OnInit {
       this.districtDropdown = response.response;
     })
   }
+  
 
 }

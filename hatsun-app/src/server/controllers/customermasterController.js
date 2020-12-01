@@ -68,7 +68,6 @@ const store = (req, res, next) => {
         Mobile: req.body.Mobile,
         
         IsActive: req.body.IsActive
-
     })
     customermaster.save()
         .then(response => {

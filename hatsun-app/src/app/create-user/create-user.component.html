@@ -131,7 +131,7 @@
               </label>
               <select formControlName="userRole" class="form-control" [(ngModel)]="userModel.RoleID">
                 <option selected [ngValue]=undefined>Select</option>
-                <option *ngFor="let role of customerDropdown" value="{{CustomerName._id}}">{{role.CustomerName}}</option>
+                <option *ngFor="let role of customerDropdown" value="{{role._id}}">{{role.CustomerName}}</option>
               </select>
             </div>
           </div>

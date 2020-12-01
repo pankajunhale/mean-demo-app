@@ -1,0 +1,130 @@
+<div class="container-fluid ">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Define File Details</h2>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">File Section</h3>
+        <div class="section-data-container">
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="customerName">File Name
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="customerName">File Type
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <select class="form-control" name="" id="">
+                                <option value="">Select</option>
+                                <option value="">Input</option>
+                                <option value="">Output</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="customerName">Location
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="customerName">URL
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Fields Section</h3>
+        <div class="section-data-container">
+            <div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="customerName">Field Name
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="customerName">Field Type
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="customerName">Length
+                                <i class="fa fa-asterisk customize-mandatory"></i>
+                            </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group filter-btn-section text-right">
+                            <input type="submit" class="btn btn-primary" value="Add" />
+                            <input type="reset" class="btn btn-primary" value="Clear" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Fields Cart</h3>
+        <div class="section-data-container">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Field Name</th>
+                        <th>Field Type</th>
+                        <th>Length</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn-warning">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-submit-container text-right">
+        <input type="submit" class="btn btn-primary" (click)="submit()" value="Submit" />
+        <input type="reset" class="btn btn-primary" value="Clear" />
+    </div>
+</div>

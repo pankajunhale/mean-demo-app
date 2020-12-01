@@ -24,6 +24,7 @@
     "@angular/router": "~8.1.2",
     "@sendgrid/mail": "^7.4.0",
     "angular-datatables": "^9.0.2",
+    "angular-ng-autocomplete": "^2.0.1",
     "async": "^3.2.0",
     "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "0.0.3",

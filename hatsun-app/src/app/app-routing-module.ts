@@ -8,6 +8,11 @@ import { RoleMasterComponent } from './role-master/role-master.component';
 import { RoleAccessRelationComponent } from './role-access-relation/role-access-relation.component';
 import { CustomerMasterListComponent } from './customer-master-list/customer-master-list.component';
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
+import { FileLocationComponent } from './file-location/file-location.component';
+import { ProcessingListComponent } from './processing-list/processing-list.component';
+import { DefineFileDetailsComponent } from './define-file-details/define-file-details.component';
+import { FileMappingComponent } from './file-mapping/file-mapping.component';
+import { CreateInterfaceComponent } from './create-interface/create-interface.component';
 
 const routes: Routes = [
   {
@@ -33,6 +38,21 @@ const routes: Routes = [
   },
   {
     path: 'createCustomer/:id/:pageStatus', component: CreateCustomerComponent
+  },
+  {
+    path: 'fileLocation', component: FileLocationComponent
+  },
+  {
+    path: 'processingList', component: ProcessingListComponent
+  },
+  {
+    path: 'defineFileDetails', component: DefineFileDetailsComponent
+  },
+  {
+    path: 'fileMapping', component: FileMappingComponent
+  },
+  {
+    path: 'createInterface', component: CreateInterfaceComponent
   }
 ];
 

@@ -13,9 +13,14 @@ export class UserService extends BaseService {
         super();
     }
     
-    findAllUsers() {
+    findAllUsers(userSelectionFilter) {
         debugger;
-        return this.service.get('api/employee');
+        return this.service.post('api/employee', userSelectionFilter);
+    }
+
+    findUsersDropdown() {
+        debugger;
+        return this.service.get('api/employee/empDropdown');
     }
 
     submitUser(userData: UserModel) {

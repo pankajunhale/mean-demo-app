@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs'
   styleUrls: ['./master-page.component.css']
 })
 export class MasterPageComponent implements OnInit {
-  showMenu = false;
+  showMenu = true;
   clickEventSubscription : Subscription;
   isUserLoggedIn = 0;
   private IS_LOGGED_IN = 'isLoggedIn';
