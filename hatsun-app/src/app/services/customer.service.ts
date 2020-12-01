@@ -11,9 +11,14 @@ export class CustomerService extends BaseService {
         super();
     }
     
-    findAllCustomers() {
+    findAllCustomers(CustomerSelectionFilter) {
         debugger;
-        return this.service.get('api/customer');
+        return this.service.post('api/customer', CustomerSelectionFilter);
+    }
+
+    findCustomersDropdown() {
+        debugger;
+        return this.service.get('api/customer/customerAutocomplete');
     }
 
     submitCustomer(customerData: CustomerModel) {

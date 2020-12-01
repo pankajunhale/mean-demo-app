@@ -16,57 +16,71 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Customer Name</label>
-                        <input type="text" class="form-control" />
+                        <div class="ng-autocomplete" style="width: 100%">
+                            <ng-autocomplete [data]="customerAutocomplete" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+                                 [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.CustomerName"></a>
+                            </ng-template>
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Country</label>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="country" class="form-control" (change)="findState()">
                             <option value="">Select</option>
+                            <option *ngFor="let country of countryDropdown" value="{{country.CountryCode}}">{{ country.Country }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">State</label>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="state" class="form-control" (change)="findCity()">
                             <option value="">Select</option>
+                            <option *ngFor="let state of stateDropdown" value="{{state.Region_Code}}">{{state.State}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">District</label>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="district" class="form-control">
                             <option value="">Select</option>
+                            <option *ngFor="let district of districtDropdown" value="{{district.CityCode}}">{{district.Name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">Status</label>
-                        <select name="" id="" class="form-control">
+                        <label for="status">Status</label>
+                        <select name="" id="status" class="form-control">
                             <option value="">Select</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-9 text-right">
                     <div class="form-group filter-btn-section">
                         <input type="submit" class="btn btn-primary" (click)="search()" value="Search" />
-                        <input type="reset" class="btn btn-primary" value="Clear" />
+                        <input type="reset" class="btn btn-primary" (click)="clear()" value="Clear" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="customerDataList.response != null" class="section-container">
+    <div *ngIf="customerDataList != null" class="section-container">
         <h3 class="section-title">List</h3>
         <div class="section-data-container">
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>Email</th>
@@ -78,8 +92,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let customerData of customerDataList.response">
-                        <td>{{customerData._id}}</td>
+                    <tr *ngFor="let customerData of customerDataList">
                         <td>{{customerData.CustomerName}}</td>
                         <td>{{customerData.Address}}</td>
                         <td>{{customerData.Email}}</td>
