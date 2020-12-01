@@ -56,7 +56,7 @@ export class CreateUserComponent implements OnInit {
         this.findCity();
       })
     }
-    this.roleService.findAllRoles().subscribe((response: any) => {
+    this.roleService.findRolesDropdown().subscribe((response: any) => {
       this.roleDropdown = response.response;
     })
 

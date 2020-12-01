@@ -15,8 +15,12 @@ export class RoleService extends BaseService {
         return this.service.post('api/rolemaster/store', roleData);
     }
 
-    findAllRoles() {
-        return this.service.get('api/rolemaster');
+    findAllRoles(roleFilter) {
+        return this.service.post('api/rolemaster', roleFilter);
+    }
+
+    findRolesDropdown() {
+        return this.service.get('api/rolemaster/roleDropdown');
     }
 
     getIndividualRoleRecord(roleId: string) {

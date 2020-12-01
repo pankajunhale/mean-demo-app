@@ -42,7 +42,7 @@ export class UserMasterListComponent implements OnInit {
       this.countryDropdown = response.response;
     })
 
-    this.roleService.findAllRoles().subscribe((response: any) => {
+    this.roleService.findRolesDropdown().subscribe((response: any) => {
       this.roleDropdown = response.response;
     })
 
