@@ -141,6 +141,11 @@
           </div>
         </div>
         <div *ngIf="urlRequest.pageStatus != 'view'" class="form-submit-container text-right">
+          <!-- <span *ngIf="$customerCreated| async">
+            <div class="alert alert-success" role="alert">
+              This is a success alert—check it out!
+            </div>
+          </span> -->
           <input type="submit" *ngIf="urlRequest.pageStatus == 'create'" [disabled]="!customerForm.valid" class="btn btn-primary" (click)="submit()"
             value="Submit" />
           <input type="submit" *ngIf="urlRequest.pageStatus == 'edit'" [disabled]="!customerForm.valid" class="btn btn-primary" (click)="update()"

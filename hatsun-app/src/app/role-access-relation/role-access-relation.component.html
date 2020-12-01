@@ -61,6 +61,11 @@
         <br>
         <div class="text-right">
             <input type="submit" class="btn btn-primary" (click)="submit()" value="Submit" />
+            <span *ngIf="$roleCreated | async">
+                <div class="alert alert-success" role="alert">
+                    This is a success alert—check it out!
+                </div>
+            </span>
         </div>
     </div>
     

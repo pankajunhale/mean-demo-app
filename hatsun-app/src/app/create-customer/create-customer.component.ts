@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '../../../node_modules/@angular/forms';
-import { ActivatedRoute } from '../../../node_modules/@angular/router';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 import { CustomerModel } from '../model/customer.model';
 import { CustomerService } from '../services/customer.service';
 import { GeographyService } from '../services/geography.service';
@@ -11,6 +12,8 @@ import { GeographyService } from '../services/geography.service';
   styleUrls: ['./create-customer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
+  $customerCreated = new BehaviorSubject(false);
+  private emailRegEx = '^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$'
   urlRequest: any;
   customerModel: CustomerModel;
   individualResponse: any;
@@ -20,7 +23,7 @@ export class CreateCustomerComponent implements OnInit {
 
   customerForm = new FormGroup({
     customerName: new FormControl(null, [Validators.required]),
-    customerEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+    customerEmail: new FormControl(null, [Validators.required, Validators.pattern(this.emailRegEx)]),
     customerCountry: new FormControl(null, [Validators.required]),
     customerState: new FormControl(null, [Validators.required]),
     customerDistrict: new FormControl(null, [Validators.required]),
@@ -31,6 +34,7 @@ export class CreateCustomerComponent implements OnInit {
     customerIsActive: new FormControl(null),
   });
   constructor(private customerService: CustomerService,
+    private route : Router,
     private router: ActivatedRoute,
     private geographyService: GeographyService) {
     this.customerModel = new CustomerModel();
@@ -58,8 +62,19 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   submit() {
+    //this.$customerCreated.next(false);
     this.customerService.submitCustomer(this.customerModel).subscribe((response: any) => {
-      alert(response.message);
+      debugger;
+      console.log(response)
+      //this.$customerCreated.next(true);
+      alert('customer created')
+      this.route.navigateByUrl('/customerList')
+
+    },(error) => {
+        if (error.status === 401) {
+          alert('email id Already Exists')
+          //console.log('error' + error)
+        }
     })
   }
 

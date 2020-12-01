@@ -26,6 +26,7 @@ export class UserMasterListComponent implements OnInit {
 
   public onSubmit() {
     this.userlist.findAllUsers().subscribe((response) => {
+      debugger;
       console.log(response)
       this.userDataList = response;
     });

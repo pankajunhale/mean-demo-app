@@ -9,7 +9,7 @@ import {Observable,Subject} from 'rxjs'
     providedIn: 'root'
 })
 export class CommonService extends BaseService {
-    private showMenu = true;
+    
     private IS_LOGGED_IN = 'isLoggedIn';
     private subject = new Subject<any>();
     constructor(private service: HttpService, private router: Router) {

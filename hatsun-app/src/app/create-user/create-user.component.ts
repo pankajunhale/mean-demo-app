@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserModel } from '../model/user.model';
 import { UserService } from '../services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { RoleService } from '../services/role.service';
 import { GeographyService } from '../services/geography.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-user',
@@ -12,6 +14,7 @@ import { GeographyService } from '../services/geography.service';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
+  $userCreated = new BehaviorSubject(false);
   userName:string;
   userModel: UserModel = null;
   individualResponse: any;
@@ -20,9 +23,10 @@ export class CreateUserComponent implements OnInit {
   countryDropdown: any;
   stateDropdown: any;
   districtDropdown: any;
+  private emailRegEx = '^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$'
   userForm = new FormGroup({
     userName: new FormControl(null, [Validators.required]),
-    userEmail: new FormControl(null, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+    userEmail: new FormControl(null, [Validators.required, Validators.pattern(this.emailRegEx)]),
     userCountry: new FormControl(null, [Validators.required]),
     userState: new FormControl(null, [Validators.required]),
     userDistrict: new FormControl(null, [Validators.required]),
@@ -32,7 +36,9 @@ export class CreateUserComponent implements OnInit {
     userRole: new FormControl(null),
     userIsActive: new FormControl(null),
   });
-  constructor(private userService: UserService, 
+  constructor(private userService: UserService,
+    private route : Router,
+    private location: Location,  
     private router: ActivatedRoute, 
     private roleService: RoleService,
     private geographyService: GeographyService) {
@@ -68,14 +74,17 @@ export class CreateUserComponent implements OnInit {
   submit() {
     debugger;
     this.userService.submitUser(this.userModel).subscribe((response: any) => {
-      alert(response.success.message);
+      debugger;
+      alert(response.success);
+      //this.$userCreated.next(true);
+      this.route.navigateByUrl('/userLists')      
     })
   }
 
   update() {
     debugger;
     this.userService.updateUser(this.userModel, this.urlRequest.id).subscribe((response: any) => {
-      alert(response.success.message);
+      alert(response.success);
     })
   }
 

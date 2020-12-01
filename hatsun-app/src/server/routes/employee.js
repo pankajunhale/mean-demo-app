@@ -10,7 +10,7 @@ const router = express.Router()
 const controller = require('../controllers/EmployeeController');
 const Employee = require('../models/Employee');
 
-router.get('/', controller.index)
+router.get('', controller.index)
 router.post('/show', controller.show)
 router.post('/store', controller.store)
 router.post('/update', controller.update)

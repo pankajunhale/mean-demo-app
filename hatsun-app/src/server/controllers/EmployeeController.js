@@ -5,14 +5,13 @@ const bcrypt = require('bcrypt');
 // list of employee
 const index  = (req,res,next) => {
     Employee.aggregate([
-        {$addFields: { RoleID: { $toObjectId: "$RoleID" } } },
-        { $lookup : {
-            from: "rolemasters",
-            localField: "RoleID",
-            foreignField: "_id",
-            as : "Roles"
-        } },
-        { $unwind: "$Roles" },
+        // { $lookup : {
+        //     from: "rolemasters",
+        //     localField: "RoleID",
+        //     foreignField: "_id",
+        //     as : "Roles"
+        // } },
+        // { $unwind: "$Roles" },
         { $lookup : {
             from: "CountryMaster",
             localField: "Country",
@@ -41,7 +40,9 @@ const index  = (req,res,next) => {
         })
     })
     .catch(error =>{
+        console.log(error)
         res.json({
+            
             message:'An error occoured'
         })
     })
@@ -169,21 +170,13 @@ function authenticate(req, res)  {
                 return;
             }
             if (!result) {
-                
-                const data = {
-                    "meta": {
-
-                        "status": "fail",
-                        "message": "Login Failure: Invalid useremail or password"
-                    }
-                };
-                res.status(401).send(data);
+               res.status(401).json({msg :" invalid credentials"});
             } else {
                 const match = compareAsync(req.body.Password, result.Password);
                 match.then(
                     result => {
                         if (result) {
-                            res.status(200).send({message: "Login Successful",resultData:resultData})
+                            res.status(200).send({message: "Login Successful",resultData:resultData.RoleID})
                         }
                         if (!result) {
                             res.status(401).send({message:"Invalid Credentials"})

@@ -66,19 +66,20 @@ const store = (req, res, next) => {
         Contact: req.body.Contact,
         Email: req.body.Email,
         Mobile: req.body.Mobile,
-        WhenEntered: req.body.WhenEntered,
-        WhenModified: req.body.WhenModified,
+        
         IsActive: req.body.IsActive
 
     })
     customermaster.save()
         .then(response => {
-            res.json({
+            res.status(200).json({
                 message: 'Customer added successfully!'
             })
         })
         .catch(error => {
-            res.json({
+            //console.log(error)
+            res.status(401).json({
+                
                 message: 'An ERROR occoured!'
             })
         })
@@ -100,14 +101,12 @@ const update = (req, res, next) => {
         Contact: req.body.customerData.Contact,
         Email: req.body.customerData.Email,
         Mobile: req.body.customerData.Mobile,
-        WhenEntered: req.body.customerData.WhenEntered,
-        WhenModified: req.body.customerData.WhenModified,
         IsActive: req.body.customerData.IsActive
     }
 
     CustomerMaster.findByIdAndUpdate(customermasterID, { $set: updatedData })
         .then(() => {
-            res.json({
+            res.status(200).json({
                 message: 'Customer Updated!'
             })
         })

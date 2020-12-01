@@ -126,6 +126,17 @@
           </div>
           <div class="col-md-3">
             <div class="form-group">
+              <label for="userName">Customer
+                <i class="fa fa-asterisk customize-mandatory"></i>
+              </label>
+              <select formControlName="userRole" class="form-control" [(ngModel)]="userModel.RoleID">
+                <option selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let role of customerDropdown" value="{{CustomerName._id}}">{{role.CustomerName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
               <label for="userName">Is Active
                 <i class="fa fa-asterisk customize-mandatory"></i>
               </label>
@@ -138,6 +149,9 @@
           </div>
         </div>
         <div *ngIf="urlRequest.pageStatus != 'view'" class="form-submit-container text-right">
+          <span *ngIf="$userCreated | async"><div class="alert alert-success" role="alert">
+            This is a success alert—check it out!
+          </div></span>
           <input type="submit" *ngIf="urlRequest.pageStatus == 'create'" [disabled]="!userForm.valid" class="btn btn-primary" (click)="submit()" value="Submit" />
           <input type="submit" *ngIf="urlRequest.pageStatus == 'edit'" [disabled]="!userForm.valid" class="btn btn-primary" (click)="update()" value="Update" />
           <input type="reset" class="btn btn-primary" value="Clear" />
