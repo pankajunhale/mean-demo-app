@@ -32,11 +32,48 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-submit-container text-right">
-                    <input type="submit" class="btn btn-primary" (click)="submit()" value="Submit" />
-                    <input type="reset" class="btn btn-primary" value="Clear" />
-                </div>
             </div>
         </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Field Mapping</h3>
+        <div class="section-data-container">
+            <table datatable class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Input File Field Name</th>
+                        <th>Output File Field Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>
+                            <select class="form-control" name="" id="">
+                                <option value="">Select</option>
+                                <option value="">Name</option>
+                                <option value="">Account No</option>
+                                <option value="">Pan No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Account Number</td>
+                        <td>
+                            <select class="form-control" name="" id="">
+                                <option value="">Select</option>
+                                <option value="">Name</option>
+                                <option value="">Account No</option>
+                                <option value="">Pan No</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-submit-container text-right">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+        <input type="reset" class="btn btn-primary" value="Clear" />
     </div>
 </div>
