@@ -1,0 +1,74 @@
+<div class="container-fluid ">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="page-title">Interface List</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <a [routerLink]="['/createInterface']" class="btn btn-dark">Add New</a>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Selection Filter</h3>
+        <div class="section-data-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Interface Name</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Input file</label>
+                        <select class="form-control" name="" id="">
+                            <option class="form-control" value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Output file</label>
+                        <select class="form-control" name="" id="">
+                            <option class="form-control" value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 text-right">
+                    <div class="form-group filter-btn-section">
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                        <input type="reset" class="btn btn-primary" value="Clear" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">List</h3>
+        <div class="section-data-container">
+            <table datatable class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Interface Name</th>
+                        <th>Input File</th>
+                        <th>Output File</th>
+                        <th>Email</th>
+                        <th>Run</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="submit" class="btn-primary" value="Run" ></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.email-cart {
+    padding: 0;
+}
+
+.email-cart li {
+    display: inline-block;
+    padding: 1px 5px 2px 11px;
+    margin: 0 5px 4px 0;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.email-cart i {
+    color: red;
+    cursor: pointer !important;
+}
