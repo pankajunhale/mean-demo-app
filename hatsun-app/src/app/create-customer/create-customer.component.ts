@@ -83,6 +83,7 @@ export class CreateCustomerComponent implements OnInit {
     this.customerService.updateCustomer(this.customerModel, this.urlRequest.id).subscribe((response: any) => {
       debugger;
       alert(response.message);
+      this.route.navigateByUrl('/customerList')
     })
   }
 

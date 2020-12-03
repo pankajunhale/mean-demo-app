@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../node_modules/@angular/forms';
 import { RoleService } from '../services/role.service';
 import { RoleModel, RoleSelectionFilterModel } from '../model/role.model';
+import { Router, ActivatedRoute } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-role-master',
@@ -9,6 +10,7 @@ import { RoleModel, RoleSelectionFilterModel } from '../model/role.model';
   styleUrls: ['./role-master.component.css']
 })
 export class RoleMasterComponent implements OnInit {
+  
   roleModel: RoleModel;
   rolDataList: any;
   pageStatus: string;
@@ -20,7 +22,8 @@ export class RoleMasterComponent implements OnInit {
     roleDescription: new FormControl(null, [Validators.required]),
     roleIsActive: new FormControl(null, [Validators.required])
   })
-  constructor(private roleService: RoleService) {
+  constructor(private roleService: RoleService,private route : Router,
+    private router: ActivatedRoute) {
     this.roleModel = new RoleModel();
     this.roleFilter = new RoleSelectionFilterModel();
   }
@@ -35,7 +38,12 @@ export class RoleMasterComponent implements OnInit {
   submit() {
     debugger;
     this.roleService.submitRole(this.roleModel).subscribe((response: any) => {
-      alert(response.message);
+      if(response.message != "" && response.message != undefined && response.message != null) {
+        alert(response.message);
+        this.route.navigateByUrl('/roleMaster', { skipLocationChange: true }).then(() => {
+          this.route.navigate(['roleMaster']);
+      }); 
+      }
     })
   }
 
