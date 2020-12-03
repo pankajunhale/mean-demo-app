@@ -1,0 +1,3 @@
+.form-submit-container input[type="submit"], .form-submit-container input[type="reset"] {
+    margin: 0 5px 0 0;
+}

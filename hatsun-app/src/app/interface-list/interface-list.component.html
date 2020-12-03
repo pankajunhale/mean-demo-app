@@ -4,7 +4,8 @@
             <div class="col-md-6">
                 <h2 class="page-title">Interface List</h2>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-6 text-right form-submit-container">
+                <input type="submit" class="btn btn-dark" value="Run" />
                 <a [routerLink]="['/createInterface']" class="btn btn-dark">Add New</a>
             </div>
         </div>
@@ -47,15 +48,21 @@
     <div class="section-container">
         <h3 class="section-title">List</h3>
         <div class="section-data-container">
-            <table datatable class="row-border hover">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
                         <th>Select</th>
                         <th>Interface Name</th>
                         <th>Input File</th>
+                        <th>Input File Location</th>
+                        <th>Input File URL</th>
                         <th>Output File</th>
+                        <th>Output File Location</th>
+                        <th>Output File URL</th>
+                        <th>Month</th>
+                        <th>Day</th>
+                        <th>Time</th>
                         <th>Email</th>
-                        <th>Run</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +72,13 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input type="submit" class="btn-primary" value="Run" ></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
