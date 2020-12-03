@@ -1,0 +1,76 @@
+<div class="container-fluid ">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="page-title">File Mapping List</h2>
+            </div>
+            <div class="col-md-6 text-right form-submit-container">
+                <a [routerLink]="['/fileMapping']" class="btn btn-dark">Add New</a>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">Selection Filter</h3>
+        <div class="section-data-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Input File</label>
+                        <select class="form-control" name="" id="">
+                            <option class="form-control" value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Output File</label>
+                        <select class="form-control" name="" id="">
+                            <option class="form-control" value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right">
+                    <div class="form-group filter-btn-section">
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                        <input type="reset" class="btn btn-primary" value="Clear" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <h3 class="section-title">List</h3>
+        <div class="section-data-container">
+            <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Input File</th>
+                        <th>Output File</th>
+                        <th>Mapping Detail</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-primary">Detail</button>
+                        </td>
+                        <td class="form-submit-container">
+                            <button class="btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn-warning">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
