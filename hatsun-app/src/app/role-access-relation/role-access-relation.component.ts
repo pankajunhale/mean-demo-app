@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../services/role.service';
 import { FormGroup, FormControl } from '../../../node_modules/@angular/forms';
 import { MenuSetup, AccessMenu } from '../model/role.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-role-access-relation',
@@ -9,6 +10,7 @@ import { MenuSetup, AccessMenu } from '../model/role.model';
   styleUrls: ['./role-access-relation.component.css']
 })
 export class RoleAccessRelationComponent implements OnInit {
+  $roleCreated = new BehaviorSubject(false)
   roleDropdown: any;
   role: string;
   MenuGroupDropdown: any;
@@ -73,7 +75,7 @@ export class RoleAccessRelationComponent implements OnInit {
     this.MenuSetup.MenuModuleName = this.MenuModule.MenuModuleName;
 
     this.roleService.updateMenuSetup(this.MenuSetup).subscribe((response) => {
-      alert(response.message);
+      this.$roleCreated.next(true)
     });
   }
 

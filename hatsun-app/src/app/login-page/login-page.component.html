@@ -37,7 +37,11 @@
                         <a class="forgot-pass-label" (click)="enterEmailPage()">Forgot Password?</a>
                     </div>
                 </div>
-                <button type="submit" (click)="auth()" class="btn btn-primary">Login</button>
+               
+                <div>
+                    <button type="submit" (click)="auth()" class="btn btn-primary">Login</button>
+                    <span *ngIf="$IsInvalidCredentials | async">Invalid Credentials</span>
+                </div>
             </div>
         </form>
     </div>

@@ -10,7 +10,7 @@ const CustomerMasterRoute = require('./routes/customerMaster')
 const MenuMasterRoute = require('./routes/MenuMaster')
 const GeographyRoute = require('./routes/geography')
 
-mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true,useUnifiedTopology:true} );
+mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true,useUnifiedTopology:true,useCreateIndex: true,} );
 const db = mongoose.connection
 
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema
 
 const schema = new Schema({
@@ -36,17 +37,10 @@ const schema = new Schema({
     },
     Email:
     {
-        type: String
+        type: String,
+        unique : true
     },
     Mobile:
-    {
-        type: String
-    },
-    WhenEntered:
-    {
-        type: String
-    },
-    WhenModified:
     {
         type: String
     },
@@ -55,6 +49,7 @@ const schema = new Schema({
         type: Boolean
     }
 })
+schema.plugin(uniqueValidator);
 
 const CustomerMaster = mongoose.model('CustomerMaster', schema)
 module.exports = CustomerMaster

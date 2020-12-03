@@ -183,21 +183,13 @@ function authenticate(req, res) {
                 return;
             }
             if (!result) {
-
-                const data = {
-                    "meta": {
-
-                        "status": "fail",
-                        "message": "Login Failure: Invalid useremail or password"
-                    }
-                };
-                res.status(401).send(data);
+               res.status(401).json({msg :" invalid credentials"});
             } else {
                 const match = compareAsync(req.body.Password, result.Password);
                 match.then(
                     result => {
                         if (result) {
-                            res.status(200).send({ message: "Login Successful", resultData: resultData })
+                            res.status(200).send({message: "Login Successful",resultData:resultData.RoleID})
                         }
                         if (!result) {
                             res.status(401).send({ message: "Invalid Credentials" })

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../services/common.service';
+import { BehaviorSubject } from 'rxjs';
 import { CustomerService } from '../services/customer.service';
 import { GeographyService } from '../services/geography.service';
 import { CustomerSelectionFilterModel } from '../model/customer.model';
+
 
 @Component({
   selector: 'app-customer-master-list',
@@ -9,6 +12,7 @@ import { CustomerSelectionFilterModel } from '../model/customer.model';
   styleUrls: ['./customer-master-list.component.css']
 })
 export class CustomerMasterListComponent implements OnInit {
+  private IS_LOGGED_IN = 'isLoggedIn';
   customerDataList: any;
   countryDropdown: any;
   stateDropdown: any;
@@ -19,8 +23,10 @@ export class CustomerMasterListComponent implements OnInit {
   keyword = 'CustomerName';
   dtOptions: DataTables.Settings = {};
   constructor(private customerService: CustomerService,
-    private geographyService: GeographyService) {
-      this.CustomerSelectionFilter = new CustomerSelectionFilterModel();
+    private geographyService: GeographyService,
+    private commonService: CommonService) {
+    this.init();
+    this.CustomerSelectionFilter = new CustomerSelectionFilterModel();
     this.dtOptions = {
       pagingType: 'full_numbers',
       processing: true,
@@ -74,6 +80,11 @@ export class CustomerMasterListComponent implements OnInit {
       debugger;
       this.customerDataList = response.response;
     });
+  }
+  private init() {
+    if (!this.commonService.isUserLoggedIn(this.IS_LOGGED_IN)) {
+      this.commonService.redirectToPath('/login', true);
+    }
   }
 
   clear() {
