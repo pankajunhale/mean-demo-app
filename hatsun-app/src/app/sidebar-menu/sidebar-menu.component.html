@@ -8,7 +8,7 @@
         </div>
         <ul class="level-1">
             <li *ngFor="let level1 of MenuSetupList">
-                <a class="menu-link"(mouseover)="level1Click(level1.GroupId)" (click)="level1Click(level1.GroupId)">{{level1.GroupName}}</a>
+                <a class="menu-link" (click)="level1Click(level1.GroupId)">{{level1.GroupName}}</a>
                 <ul class="level-2" *ngIf="MenuSelectionId == level1.GroupId">
                     <li *ngFor="let level2 of level1.MenuModule">
                         <a class="menu-link" (mouseover)="level2Click(level2.ParentId)" (click)="level2Click(level2.ParentId)">{{level2.MenuModuleName}}</a>

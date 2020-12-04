@@ -99,7 +99,7 @@ const store = (req, res, next) => {
         RoleID: req.body.RoleID,
         isActive: req.body.isActive,
         SecurityCode: req.body.SecurityCode,
-        PasswordResetedOn: Date.now(),
+        
         TokenNo: req.body.TokenNo
     });
     try {

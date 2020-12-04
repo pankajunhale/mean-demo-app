@@ -85,6 +85,7 @@ router.post('/reset', function (req, res) {
                             bcrypt.hash(req.body.Password, salt, (err, hash) => {
                                 user.Password = hash;
                                 user.saltSecret = salt;
+                                user.PasswordResetedOn = Date.now(),
                                 user.resetPasswordToken = undefined;
                                 user.resetPasswordExpires = undefined;
                                 user.save(function (err){

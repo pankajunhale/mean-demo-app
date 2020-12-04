@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./processing-list.component.css']
 })
 export class ProcessingListComponent implements OnInit {
+  interfaceTimeVal: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  interfaceTime() {
+    this.interfaceTimeVal = $("#interface-time").val().toString();
   }
 
 }

@@ -42,7 +42,7 @@ export class UserMasterListComponent implements OnInit {
       this.countryDropdown = response.response;
     })
 
-    this.roleService.findAllRoles().subscribe((response: any) => {
+    this.roleService.findRolesDropdown().subscribe((response: any) => {
       this.roleDropdown = response.response;
     })
 
@@ -82,16 +82,19 @@ export class UserMasterListComponent implements OnInit {
     this.UserSelectionFilter.IsActive = $("#status").val().toString();
     this.UserSelectionFilter.RoleID = $("#role").val().toString();
 
-    // $.each(this.UserSelectionFilter, function (key, value) {
-    //   if (value === "" || value === null) {
-    //     delete that.UserSelectionFilter[key];
-    //   }
-    // });
-
     this.userlist.findAllUsers(this.UserSelectionFilter).subscribe((response) => {
       console.log(response)
       this.userDataList = response;
     });
+  }
+
+  clear() {
+    $("#country").val("");
+    $("#state").val("");
+    $("#district").val("");
+    $("#status").val("");
+    $("#role").val("");
+    this.UserId = "";
   }
 
   private init() {

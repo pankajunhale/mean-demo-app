@@ -1,8 +1,39 @@
 const RoleMaster = require('../models/rolemaster')
+var mongoose = require('mongoose');
 
-// list of employee
+// list of roles
 const index = (req, res, next) => {
-    RoleMaster.find()
+    var matchObj = {
+        "_id": (req.body.RoleId != "" && req.body.RoleId != undefined) ? mongoose.Types.ObjectId(req.body.RoleId) : "",
+        "IsActive": req.body.Status
+    }
+    for (var name in matchObj) {
+        if (matchObj[name] == "") {
+            delete matchObj[name];
+        }
+    }
+    var stages = [];
+    if (Object.keys(matchObj).length != 0) {
+        stages.push({ $match: matchObj })
+    }
+    RoleMaster.find(matchObj)
+        .then(response => {
+            res.json({
+                response
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'An error occoured'
+            })
+        })
+}
+
+// list of roles
+const roleDropdown = (req, res, next) => {
+    RoleMaster.aggregate([
+        { $project: { "RoleName": 1 } }
+    ])
         .then(response => {
             res.json({
                 response
@@ -47,7 +78,7 @@ const store = (req, res, next) => {
         IsActive: req.body.IsActive,
         BEID: req.body.BEID,
         CustomerID: req.body.CustomerID
-        
+
     })
     rolemaster.save()
         .then(response => {
@@ -80,7 +111,7 @@ const update = (req, res, next) => {
         WhenModified: req.body.roleData.WhenModified,
         IsActive: req.body.roleData.IsActive,
         BEID: req.body.roleData.BEID,
-        IsGobal:req.body.roleData.IsGobal,
+        IsGobal: req.body.roleData.IsGobal,
         CustomerID: req.body.roleData.CustomerID
     }
 
@@ -113,5 +144,5 @@ const destroy = (req, res, next) => {
 }
 
 module.exports = {
-    index, show, store, update, destroy
+    index, show, store, update, destroy, roleDropdown
 }

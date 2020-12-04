@@ -25,6 +25,7 @@ import { DefineFileDetailsComponent } from './define-file-details/define-file-de
 import { FileMappingComponent } from './file-mapping/file-mapping.component';
 import { CreateInterfaceComponent } from './create-interface/create-interface.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { InterfaceListComponent } from './interface-list/interface-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     ProcessingListComponent,
     DefineFileDetailsComponent,
     FileMappingComponent,
-    CreateInterfaceComponent
+    CreateInterfaceComponent,
+    InterfaceListComponent
   ],
   imports: [
     BrowserModule,

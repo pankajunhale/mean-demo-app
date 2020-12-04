@@ -31,3 +31,8 @@ export class AccessMenu {
     Roles : String[];
 }
 
+export class RoleSelectionFilterModel {
+    RoleId: String;
+    Status : String;
+}
+

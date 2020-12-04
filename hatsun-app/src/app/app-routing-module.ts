@@ -13,6 +13,7 @@ import { ProcessingListComponent } from './processing-list/processing-list.compo
 import { DefineFileDetailsComponent } from './define-file-details/define-file-details.component';
 import { FileMappingComponent } from './file-mapping/file-mapping.component';
 import { CreateInterfaceComponent } from './create-interface/create-interface.component';
+import { InterfaceListComponent } from './interface-list/interface-list.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,9 @@ const routes: Routes = [
   },
   {
     path: 'createInterface', component: CreateInterfaceComponent
+  },
+  {
+    path: 'interfaceList', component: InterfaceListComponent
   }
 ];
 

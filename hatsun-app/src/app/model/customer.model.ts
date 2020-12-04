@@ -18,3 +18,13 @@ export class CustomerModel {
     }
 }
 
+export class CustomerSelectionFilterModel {
+    CustomerID: String;
+    Country: String;
+    State: String;
+    Distrcit: String;
+    IsActive: String;
+    constructor() {
+
+    }
+}

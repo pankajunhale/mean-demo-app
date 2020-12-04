@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../node_modules/@angular/forms';
 import { RoleService } from '../services/role.service';
-import { RoleModel } from '../model/role.model';
+import { RoleModel, RoleSelectionFilterModel } from '../model/role.model';
 
 @Component({
   selector: 'app-role-master',
@@ -13,6 +13,8 @@ export class RoleMasterComponent implements OnInit {
   rolDataList: any;
   pageStatus: string;
   roleId: string;
+  roleDropdown: any;
+  roleFilter: RoleSelectionFilterModel;
   roleMasterForm = new FormGroup({
     roleName: new FormControl(null, [Validators.required]),
     roleDescription: new FormControl(null, [Validators.required]),
@@ -20,9 +22,14 @@ export class RoleMasterComponent implements OnInit {
   })
   constructor(private roleService: RoleService) {
     this.roleModel = new RoleModel();
+    this.roleFilter = new RoleSelectionFilterModel();
   }
 
   ngOnInit() {
+    this.roleService.findRolesDropdown().subscribe((response) => {
+      console.log(response)
+      this.roleDropdown = response.response;
+    });
   }
 
   submit() {
@@ -34,10 +41,16 @@ export class RoleMasterComponent implements OnInit {
 
   search() {
     debugger;
-    this.roleService.findAllRoles().subscribe((response) => {
-      console.log(response)
-      this.rolDataList = response;
+    this.roleFilter.RoleId = $("#role-id").val().toString();
+    this.roleFilter.Status = $("#status").val().toString();
+    this.roleService.findAllRoles(this.roleFilter).subscribe((response) => {
+      this.rolDataList = response.response;
     });
+  }
+
+  clear() {
+    $("#role-id").val("");
+    $("#status").val("");
   }
 
   add() {

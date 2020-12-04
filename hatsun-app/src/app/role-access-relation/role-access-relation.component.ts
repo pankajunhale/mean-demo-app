@@ -32,7 +32,7 @@ export class RoleAccessRelationComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.roleService.findAllRoles().subscribe((response) => {
+    this.roleService.findRolesDropdown().subscribe((response) => {
       this.roleDropdown = response.response;
     });
 

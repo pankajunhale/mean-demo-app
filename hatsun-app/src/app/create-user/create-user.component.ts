@@ -35,6 +35,7 @@ export class CreateUserComponent implements OnInit {
     userLocation: new FormControl(null, [Validators.required]),
     userMobile: new FormControl(null),
     userPassword: new FormControl(null),
+    customer : new FormControl(null),
     userRole: new FormControl(null),
     userIsActive: new FormControl(null),
   });
@@ -65,14 +66,14 @@ export class CreateUserComponent implements OnInit {
         this.findCity();
       })
     }
-    this.roleService.findAllRoles().subscribe((response: any) => {
+    this.roleService.findRolesDropdown().subscribe((response: any) => {
       this.roleDropdown = response.response;
     })
 
     this.geographyService.findCountry().subscribe((response: any) => {
       this.countryDropdown = response.response;
     })
-    this.customerservice.findAllCustomers().subscribe((response :any)=>{
+    this.customerservice.findCustomersDropdown().subscribe((response :any)=>{
       this.customerDropdown = response.response;
     })
   }

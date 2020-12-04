@@ -1,30 +1,49 @@
 const CustomerMaster = require('../models/Customermaster')
+var mongoose = require('mongoose');
 
 // list of employee
 const index = (req, res, next) => {
-    CustomerMaster.aggregate([
-        { $lookup : {
-            from: "CountryMaster",
-            localField: "Country",
-            foreignField: "CountryCode",
-            as : "Country"
-        } },
+    var matchObj = {
+        "_id": (req.body.CustomerID != "" && req.body.CustomerID != undefined ) ? mongoose.Types.ObjectId(req.body.CustomerID) : "",
+        "Country.CountryCode": req.body.Country,
+        "State.Region_Code": req.body.State,
+        "City.CityCode": req.body.Distrcit,
+        "IsActive": req.body.IsActive
+    }
+    for (var name in matchObj) {
+        if(matchObj[name] == ""){
+            delete matchObj[name];
+        }
+     }
+    var stages = [
+        { $lookup : { from: "CountryMaster", localField: "Country", foreignField: "CountryCode", as : "Country"} },
         { $unwind: "$Country" },
-        { $lookup : {
-            from: "StateMaster",
-            localField: "State",
-            foreignField: "Region_Code",
-            as : "State"
-        } },
+        { $lookup : { from: "StateMaster", localField: "State", foreignField: "Region_Code", as : "State"} },
         { $unwind: "$State" },
-        { $lookup : {
-            from: "CityMaster",
-            localField: "District",
-            foreignField: "CityCode",
-            as : "City"
-        } },
+        { $lookup : { from: "CityMaster", localField: "District", foreignField: "CityCode", as : "City" } },
         { $unwind: "$City" }
-        ])
+    ]
+    if(Object.keys(matchObj).length != 0) {
+        stages.push({ $match: matchObj })
+    }
+    CustomerMaster.aggregate(stages)
+        .then(response => {
+            res.json({
+                response
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'An error occoured'
+            })
+        })
+}
+
+// customer dropdown
+const customerAutocomplete = (req, res, next) => {
+    CustomerMaster.aggregate([
+        { $project : { "CustomerName":1 } }
+    ])
         .then(response => {
             res.json({
                 response
@@ -132,5 +151,5 @@ const destroy = (req, res, next) => {
 }
 
 module.exports = {
-    index, show, store, update, destroy
+    index, show, store, update, destroy, customerAutocomplete
 }

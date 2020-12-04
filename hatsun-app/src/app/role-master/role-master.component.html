@@ -16,35 +16,37 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Role Name</label>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="role-id" class="form-control">
                             <option value="">Select</option>
+                            <option *ngFor="let role of roleDropdown" value="{{role._id}}">{{role.RoleName}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Status</label>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="status" class="form-control">
                             <option value="">Select</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group filter-btn-section">
                         <input type="submit" class="btn btn-primary" (click)="search()" value="Search" />
-                        <input type="reset" class="btn btn-primary" value="Clear" />
+                        <input type="reset" class="btn btn-primary" (click)="clear()" value="Clear" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf = "rolDataList.response != null" class="section-container">
+    <div *ngIf = "rolDataList != null" class="section-container">
         <h3 class="section-title">List</h3>
         <div class="section-data-container">
-            <table datatable [dtOptions]="dtOptions" class="row-border hover">
+            <table datatable class="row-border hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Role Name</th>
                         <th>Description</th>
                         <th>Status</th>
@@ -52,11 +54,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor = "let roleData of rolDataList.response">
-                        <td>{{roleData._id}}</td>
+                    <tr *ngFor = "let roleData of rolDataList">
                         <td>{{roleData.RoleName}}</td>
                         <td>{{roleData.Description}}</td>
-                        <td>{{roleData.IsActive}}</td>
+                        <td>
+                            <span *ngIf="roleData.IsActive == '1'">Active</span>
+                            <span *ngIf="roleData.IsActive == '0'">Inactive</span>
+                        </td>
                         <td>
                             <button (click)="view('edit', roleData._id)" data-toggle="modal" data-target="#createRole" class="btn-primary"><i class="fa fa-edit"></i></button>
                             <button (click)="view('view', roleData._id)" data-toggle="modal" data-target="#createRole" class="btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button>
