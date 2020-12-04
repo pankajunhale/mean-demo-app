@@ -14,6 +14,8 @@ import { DefineFileDetailsComponent } from './define-file-details/define-file-de
 import { FileMappingComponent } from './file-mapping/file-mapping.component';
 import { CreateInterfaceComponent } from './create-interface/create-interface.component';
 import { InterfaceListComponent } from './interface-list/interface-list.component';
+import { FileDetailListComponent } from './file-detail-list/file-detail-list.component';
+import { FileMappingListComponent } from './file-mapping-list/file-mapping-list.component';
 
 const routes: Routes = [
   {
@@ -57,6 +59,12 @@ const routes: Routes = [
   },
   {
     path: 'interfaceList', component: InterfaceListComponent
+  },
+  {
+    path: 'fileDetailList', component: FileDetailListComponent
+  },
+  {
+    path: 'fileMappingList', component: FileMappingListComponent
   }
 ];
 

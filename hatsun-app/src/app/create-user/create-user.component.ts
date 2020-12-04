@@ -5,9 +5,9 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute , Router } from '@angular/router';
 import { RoleService } from '../services/role.service';
 import { GeographyService } from '../services/geography.service';
-import{ CustomerService } from '../services/customer.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Location } from '@angular/common';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-create-user',
@@ -45,7 +45,8 @@ export class CreateUserComponent implements OnInit {
     private router: ActivatedRoute,
     private customerservice : CustomerService,
     private roleService: RoleService,
-    private geographyService: GeographyService) {
+    private geographyService: GeographyService,
+    private customerService: CustomerService) {
     this.userModel = new UserModel();
     this.router.params.subscribe(params => {
       this.urlRequest = params;
@@ -53,6 +54,19 @@ export class CreateUserComponent implements OnInit {
    }
 
   ngOnInit() {
+    
+    this.customerService.findCustomersDropdown().subscribe((response: any) => {
+      this.customerDropdown = response.response;
+    })
+
+    this.roleService.findRolesDropdown().subscribe((response: any) => {
+      this.roleDropdown = response.response;
+    })
+
+    this.geographyService.findCountry().subscribe((response: any) => {
+      this.countryDropdown = response.response;
+    })
+
     if(this.urlRequest.pageStatus == 'view'){
       this.userForm.disable();
     }
@@ -66,16 +80,6 @@ export class CreateUserComponent implements OnInit {
         this.findCity();
       })
     }
-    this.roleService.findRolesDropdown().subscribe((response: any) => {
-      this.roleDropdown = response.response;
-    })
-
-    this.geographyService.findCountry().subscribe((response: any) => {
-      this.countryDropdown = response.response;
-    })
-    this.customerservice.findCustomersDropdown().subscribe((response :any)=>{
-      this.customerDropdown = response.response;
-    })
   }
 
   submit() {
@@ -83,15 +87,16 @@ export class CreateUserComponent implements OnInit {
     this.userService.submitUser(this.userModel).subscribe((response: any) => {
       debugger;
       alert(response.success);
-      //this.$userCreated.next(true);
-      this.route.navigateByUrl('/userLists')      
+      this.route.navigateByUrl('/userList')      
     })
   }
 
   update() {
     debugger;
     this.userService.updateUser(this.userModel, this.urlRequest.id).subscribe((response: any) => {
-      alert(response.success);
+      debugger;
+      alert(response.message);
+      this.route.navigateByUrl('/userList')  
     })
   }
 

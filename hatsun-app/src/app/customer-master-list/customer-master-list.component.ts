@@ -21,9 +21,11 @@ export class CustomerMasterListComponent implements OnInit {
   CustomerSelectionFilter: CustomerSelectionFilterModel
   keyword = 'CustomerName';
   dtOptions: DataTables.Settings = {};
-  constructor(private customerService: CustomerService, private commonService:CommonService,
-    private geographyService: GeographyService) {
-      this.CustomerSelectionFilter = new CustomerSelectionFilterModel();
+  constructor(private customerService: CustomerService,
+    private geographyService: GeographyService,
+    private commonService: CommonService) {
+    this.init();
+    this.CustomerSelectionFilter = new CustomerSelectionFilterModel();
     this.dtOptions = {
       pagingType: 'full_numbers',
       processing: true,

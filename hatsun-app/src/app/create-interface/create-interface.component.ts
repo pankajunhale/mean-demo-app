@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class CreateInterfaceComponent implements OnInit {
   emailCart = []
   constructor() { }
-
+  month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  daysInWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   ngOnInit() {
   }
 

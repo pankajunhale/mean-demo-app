@@ -2,11 +2,10 @@
     <div class="page-header">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="page-title">Interface List</h2>
+                <h2 class="page-title">File Mapping List</h2>
             </div>
             <div class="col-md-6 text-right form-submit-container">
-                <input type="submit" class="btn btn-dark" value="Run" />
-                <a [routerLink]="['/createInterface']" class="btn btn-dark">Add New</a>
+                <a [routerLink]="['/fileMapping']" class="btn btn-dark">Add New</a>
             </div>
         </div>
     </div>
@@ -16,13 +15,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">Interface Name</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="">Input file</label>
+                        <label for="">Input File</label>
                         <select class="form-control" name="" id="">
                             <option class="form-control" value="">Select</option>
                         </select>
@@ -30,13 +23,13 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="">Output file</label>
+                        <label for="">Output File</label>
                         <select class="form-control" name="" id="">
                             <option class="form-control" value="">Select</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 text-right">
+                <div class="col-md-6 text-right">
                     <div class="form-group filter-btn-section">
                         <input type="submit" class="btn btn-primary" value="Search" />
                         <input type="reset" class="btn btn-primary" value="Clear" />
@@ -51,34 +44,30 @@
             <table datatable [dtOptions]="dtOptions" class="row-border hover">
                 <thead>
                     <tr>
-                        <th>Select</th>
-                        <th>Interface Name</th>
                         <th>Input File</th>
-                        <th>Input File Location</th>
-                        <th>Input File URL</th>
                         <th>Output File</th>
-                        <th>Output File Location</th>
-                        <th>Output File URL</th>
-                        <th>Month</th>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Email</th>
+                        <th>Mapping Detail</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <button class="btn-primary">Detail</button>
+                        </td>
+                        <td class="form-submit-container">
+                            <button class="btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn-warning">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

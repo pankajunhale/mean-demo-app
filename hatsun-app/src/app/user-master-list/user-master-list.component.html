@@ -106,10 +106,10 @@
                     <tr *ngFor="let userDetails of userDataList.response">
                         <td>{{userDetails.UserName}}</td>
                         <td>{{userDetails.Roles.RoleName}}</td>
-                        <!-- <td>
+                        <td>
                             <span *ngIf="userDetails.isActive == true">Active</span>
                             <span *ngIf="userDetails.isActive == false">Inactive</span>
-                        </td> -->
+                        </td>
                         <td>{{userDetails.UserEmail}}</td>
                         <td>{{userDetails.UserMobile}}</td>
                         <td>{{userDetails.Country.Country}}</td>

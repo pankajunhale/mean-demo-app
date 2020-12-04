@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interface-list.component.css']
 })
 export class InterfaceListComponent implements OnInit {
-
-  constructor() { }
+  dtOptions: DataTables.Settings = {};
+  constructor() { 
+    this.dtOptions = {
+      processing: true,
+      scrollX: true
+    };
+  }
 
   ngOnInit() {
   }

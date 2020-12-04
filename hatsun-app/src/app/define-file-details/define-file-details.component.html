@@ -1,9 +1,12 @@
 <div class="container-fluid ">
     <div class="page-header">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <h2 class="page-title">Define File Details</h2>
             </div>
+            <div class="col-md-6 text-right form-submit-container">
+                    <a [routerLink]="['/fileDetailList']" class="btn btn-dark">File Detail List</a>
+                </div>
         </div>
     </div>
     <div class="section-container">
@@ -107,7 +110,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>
+                        <td class="form-submit-container">
                             <button class="btn-primary">
                                 <i class="fa fa-edit"></i>
                             </button>
