@@ -45,6 +45,7 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
       debugger;
       this.commonService.setLocalStorageItem('isLoggedIn', '1');
       this.commonService.setLocalStorageItem('roleId', response.resultData.RoleID);
+      this.commonService.setLocalStorageItem('userName', response.resultData.UserName);
       debugger;
       window.location.href = '/userList'
     },(error)=>{

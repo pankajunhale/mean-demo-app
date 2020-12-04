@@ -11,6 +11,8 @@ export class SidebarMenuComponent implements OnInit {
   MenuSelectionId: string;
   AnotherMenuSelectionId: string;
   MenuSetupList: any;
+  roleName: String;
+  userName: String;
   roleID: string;
 
   constructor(private roleService: RoleService, private commonService: CommonService) {
@@ -19,10 +21,16 @@ export class SidebarMenuComponent implements OnInit {
 
   ngOnInit() {
     this.roleID = this.commonService.getLocalStorageItem("roleId");
+    this.userName = this.commonService.getLocalStorageItem("userName");
     this.roleService.findMenuSetup(this.roleID).subscribe((response: any) => {
       debugger;
       this.MenuSetupList = response.response;
       console.log("Role Id - " + this.roleID);
+    })
+
+    this.roleService.getIndividualRoleRecord(this.roleID).subscribe((response: any) => {
+      debugger;
+      this.roleName = response.response.RoleName;
     })
   }
 

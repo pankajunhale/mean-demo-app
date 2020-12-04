@@ -189,7 +189,7 @@ function authenticate(req, res) {
                 match.then(
                     result => {
                         if (result) {
-                            res.status(200).send({message: "Login Successful",resultData:resultData.RoleID})
+                            res.status(200).send({message: "Login Successful",resultData:resultData})
                         }
                         if (!result) {
                             res.status(401).send({ message: "Invalid Credentials" })
