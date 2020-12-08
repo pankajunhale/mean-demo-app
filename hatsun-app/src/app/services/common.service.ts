@@ -44,6 +44,9 @@ export class CommonService extends BaseService {
     public removeLocalStorageItem(key: string): void {
         localStorage.removeItem(key);
     }
+    public clearLocalStorage(): void{
+        localStorage.clear();
+    }
 
     public isUserLoggedIn(key: string): boolean{
         const data = this.getLocalStorageItem(this.IS_LOGGED_IN);
@@ -54,7 +57,7 @@ export class CommonService extends BaseService {
        return flag;
     }
     public loggedOut(): void{
-        this.removeLocalStorageItem(this.IS_LOGGED_IN);
+        this.clearLocalStorage();
         this.redirectToPath('/login',true)
 
     }
